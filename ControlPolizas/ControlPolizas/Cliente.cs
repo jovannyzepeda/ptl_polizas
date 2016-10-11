@@ -1,0 +1,386 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SQLite;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ControlPolizas
+{
+    public partial class Cliente : Form
+    {
+        Direccion direccion;
+        SQLiteConnection conexion;
+
+        public void valoreDefaultBotones()
+        {
+            btnEliminar.Enabled = false;
+            btnAgregarCliente.Enabled = true;
+            btnCancelar.Enabled = true;
+            //btnDireccion.Enabled = true;
+            btnBuscar.Enabled = true;
+        }
+        public void limpiarTextBox()
+        {
+            txtNombreCliente.Text = "";
+            txtRFC.Text = "";
+            txtTelefono.Text = "";
+            //txtDiaCumpleanios.Text = "";
+            //txtAnioCumpleanios.Text = "";
+            txtEmail.Text = "";
+            txtCalleDireccion.Text = "";
+            txtNumeroCalle.Text = "";
+            txtColoniaDireccion.Text = "";
+            txtEstadoDireccion.Text = "";
+            txtMuniciopioDireccion.Text = "";
+            txtCodigoPotalDireccion.Text = "";
+        }
+
+
+
+        public Cliente()
+        {
+            InitializeComponent();
+        }
+
+        private void Cliente_Load(object sender, EventArgs e)
+        {
+            sugerenciaClientes();
+
+            direccion = new Direccion();
+            //limpiarComboBox();
+            limpiarTextBox();
+            valoreDefaultBotones();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+              
+            this.Hide();
+            direccion.Dispose();
+            
+        }
+
+        public void sugerenciaClientes()
+        {
+            SQLiteCommand command;
+            SQLiteDataReader lectorDatos;
+
+            try
+            {
+
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+
+                conexion.Open();
+                command = new SQLiteCommand("Select Nombre From Clientes", conexion);
+                lectorDatos = command.ExecuteReader();
+                while (lectorDatos.Read())
+                {
+                    txtNombreCliente.AutoCompleteCustomSource.Add(lectorDatos["Nombre"].ToString());
+                }
+
+
+                conexion.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error al Cargar Clientes");
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Cumpleaños_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtNombreCliente.Text != "") 
+                {
+                    buscarCliente(txtNombreCliente.Text);
+
+                    btnEliminar.Enabled = true;
+                    btnBuscar.Enabled = false;
+                    btnAgregarCliente.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Verifique el Cliente a buscar");
+                }
+            }
+            catch(Exception ev)
+            {
+                MessageBox.Show("Verifique la información "+ ev);
+            }
+
+            
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            direccion.getCliente(txtNombreCliente.Text);
+            direccion.ShowDialog();
+
+        }
+
+        private void btnAgregarCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String nombreCliente, RFC, fechaNacimiento, correoElectronico,telefono;
+                String calle, numero, colonia, estado, municipio, codigoPostal;
+
+                nombreCliente = txtNombreCliente.Text;
+                RFC = txtRFC.Text;
+                fechaNacimiento = dtpCumpleanios.Value.ToString("yyyy-MM-dd");
+                telefono = txtTelefono.Text;
+                correoElectronico = txtEmail.Text;
+
+                calle=txtCalleDireccion.Text;
+                numero=txtNumeroCalle.Text;
+                colonia=txtColoniaDireccion.Text;
+                estado=txtEstadoDireccion.Text;
+                municipio=txtEstadoDireccion.Text;
+                codigoPostal=txtCodigoPotalDireccion.Text;
+
+                int pk_cliente = ultimoCliente();
+
+                insertarCliente(pk_cliente, nombreCliente, RFC, fechaNacimiento, telefono, correoElectronico);
+                insertarDireccionCliente(pk_cliente, calle, numero, colonia, estado, municipio, codigoPostal);
+                //limpiarComboBox();
+                limpiarTextBox();
+                valoreDefaultBotones();
+                sugerenciaClientes();
+            }
+            catch(Exception even)
+            {
+                MessageBox.Show("Verifique la información "+even);
+            }
+
+            
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            direccion.Dispose();
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            //limpiarComboBox();
+            limpiarTextBox();
+            valoreDefaultBotones();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+            //limpiarComboBox();
+            limpiarTextBox();
+            valoreDefaultBotones();
+        }
+
+
+
+
+
+
+
+        public void insertarCliente(int PK_Cliente,String nombre, String RFC, String fechaNacimiento, String telefono, String correoElectronico)
+        {
+            SQLiteCommand commandMax,commandoInsert;
+            //int PK_Cliente;
+            string query;
+            
+
+            try
+            {
+               
+                //PK_Cliente = ultimoCliente();
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+                //MessageBox.Show("Cliente nuevo Agregado " + PK_Cliente);
+                //query = "INSERT INTO Clientes VALUES(" + PK_Cliente + ",'" + nombre + "','" + RFC + "','" + fechaNacimiento + "','" + telefono + "','" + correoElectronico + "')";
+
+                query = "INSERT INTO Clientes VALUES(" + PK_Cliente + ",'" + nombre + "','" + RFC + "','" + fechaNacimiento + "','" + telefono + "','" + correoElectronico + "')";
+               
+
+                commandoInsert = new SQLiteCommand(query, conexion);
+                commandoInsert.ExecuteNonQuery();
+                MessageBox.Show("Cliente Agregado");
+                conexion.Close();
+
+                PK_Cliente = 0;
+            }
+            catch(Exception ev)
+            {
+                MessageBox.Show("Error al Agregar un Cliente "+ev);
+            }
+        }
+
+        public int ultimoCliente()
+        {
+            int PK_Cliente=0;
+            SQLiteCommand commandMax;
+            try
+            {
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+                string queryMax = "SELECT max(PK_Cliente) FROM Clientes";
+                commandMax = new SQLiteCommand(queryMax, conexion);
+                string PK_ClienteString = commandMax.ExecuteScalar().ToString();
+                PK_Cliente = Int32.Parse(PK_ClienteString);
+
+                if (PK_Cliente == -1)
+                {
+                    PK_Cliente = 1;
+                }else
+                {
+                    PK_Cliente += 1;
+                }
+                conexion.Close();
+            }
+            catch { }
+
+            return PK_Cliente;
+        }
+
+        public void buscarCliente(String nombre)
+        {
+            int pk_Cliente=7;
+            SQLiteCommand command;
+            SQLiteDataReader lectorDatos;
+            String query = "SELECT PK_Cliente,Nombre,RFC,FechaNacimiento,Telefono,CorreoElectronico FROM Clientes WHERE Nombre='"+nombre+"'";
+            try
+            {
+
+
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+                command = new SQLiteCommand(query,conexion);
+                lectorDatos = command.ExecuteReader();
+
+                while (lectorDatos.Read())
+                {
+                    pk_Cliente = lectorDatos.GetInt16(0);
+                    txtRFC.Text = lectorDatos.GetString(2);
+                    txtTelefono.Text= lectorDatos.GetString(4);
+                    txtEmail.Text= lectorDatos.GetString(5);
+                    dtpCumpleanios.Value = lectorDatos.GetDateTime(3);
+                }
+
+                conexion.Close();
+                buscarDireccionCliente(pk_Cliente);
+
+            }catch(Exception ev)
+            {
+                MessageBox.Show("No se encontro el Cliente "+ev);
+            }
+        }
+
+        public void insertarDireccionCliente(int PK_Cliente,String calle, String numero, String colonia, String estado, String municipio, String codigoPostal)
+        {
+            SQLiteCommand commandMax, commandoInsert;
+            int PK_DireccionCliente;
+            string query;
+
+
+            try
+            {
+
+                PK_DireccionCliente = ultimaDireccion();
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+                //MessageBox.Show("Cliente nuevo Agregado " + PK_Cliente);
+                //query = "INSERT INTO Clientes VALUES(" + PK_Cliente + ",'" + nombre + "','" + RFC + "','" + fechaNacimiento + "','" + telefono + "','" + correoElectronico + "')";
+
+                query = "INSERT INTO DireccionCliente VALUES("+PK_DireccionCliente +","+ PK_Cliente + ",'" + calle + "','" + numero + "','" + colonia + "','" + estado + "','" + municipio + "','" +codigoPostal + "')";
+
+
+                commandoInsert = new SQLiteCommand(query, conexion);
+                commandoInsert.ExecuteNonQuery();
+                MessageBox.Show("Direccion de cliente Agregada");
+                conexion.Close();
+
+                //PK_Cliente = 0;
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Error al Agregar Direccion del cliente " + ev);
+            }
+        }
+
+        public int ultimaDireccion()
+        {
+            int PK_DireccionCliente = 0;
+            SQLiteCommand commandMax;
+            try
+            {
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+                string queryMax = "SELECT max(PK_DireccionCliente) FROM DireccionCliente";
+                commandMax = new SQLiteCommand(queryMax, conexion);
+                string PK_ClienteString = commandMax.ExecuteScalar().ToString();
+                PK_DireccionCliente = Int32.Parse(PK_ClienteString);
+
+                if (PK_DireccionCliente == -1)
+                {
+                    PK_DireccionCliente = 1;
+                }
+                else
+                {
+                    PK_DireccionCliente += 1;
+                }
+                conexion.Close();
+            }
+            catch { }
+
+            return PK_DireccionCliente;
+        }
+
+        public void buscarDireccionCliente(int PK_Cliente)
+        {
+            SQLiteCommand command;
+            SQLiteDataReader lectorDatos;
+            String query = "SELECT Calle,NumeroInterior,Colonia,Estado,Municipio,CodigoPostal FROM DireccionCliente WHERE FK_Cliente="+PK_Cliente;
+            try
+            {
+
+
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+                command = new SQLiteCommand(query, conexion);
+                lectorDatos = command.ExecuteReader();
+
+                while (lectorDatos.Read())
+                {
+                    txtCalleDireccion.Text = lectorDatos.GetString(0);
+                    txtNumeroCalle.Text = lectorDatos.GetString(1);
+                    txtColoniaDireccion.Text = lectorDatos.GetString(2);
+                    txtEstadoDireccion.Text = lectorDatos.GetString(3);
+                    txtMuniciopioDireccion.Text = lectorDatos.GetString(4);
+                    txtCodigoPotalDireccion.Text = lectorDatos.GetString(5);
+                }
+
+                conexion.Close();
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("No se encontro el Cliente " + ev);
+            }
+        }
+    }
+}

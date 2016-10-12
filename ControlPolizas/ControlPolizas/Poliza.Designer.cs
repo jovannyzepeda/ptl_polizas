@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.chkboxNueva = new System.Windows.Forms.CheckBox();
             this.txtNumeroPoliza = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -70,24 +69,15 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtAdjunto = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnGenerarRecibos = new System.Windows.Forms.Button();
+            this.txtNumeroRecibos = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.chkboxPagarPrimer = new System.Windows.Forms.CheckBox();
+            this.btnRevisarRecibos = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Image = global::ControlPolizas.Properties.Resources.business_1_;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(216, 265);
-            this.label1.TabIndex = 1;
-            this.label1.UseWaitCursor = true;
             // 
             // chkboxNueva
             // 
@@ -98,6 +88,7 @@
             this.chkboxNueva.TabIndex = 1;
             this.chkboxNueva.Text = "Nueva";
             this.chkboxNueva.UseVisualStyleBackColor = true;
+            this.chkboxNueva.CheckedChanged += new System.EventHandler(this.chkboxNueva_CheckedChanged);
             this.chkboxNueva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chkboxNueva_KeyPress);
             // 
             // txtNumeroPoliza
@@ -183,7 +174,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(35, 352);
+            this.label11.Location = new System.Drawing.Point(9, 335);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(41, 13);
             this.label11.TabIndex = 25;
@@ -193,7 +184,7 @@
             // 
             this.cmbAgente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAgente.FormattingEnabled = true;
-            this.cmbAgente.Location = new System.Drawing.Point(38, 368);
+            this.cmbAgente.Location = new System.Drawing.Point(12, 351);
             this.cmbAgente.Name = "cmbAgente";
             this.cmbAgente.Size = new System.Drawing.Size(137, 21);
             this.cmbAgente.TabIndex = 9;
@@ -211,7 +202,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(302, 540);
+            this.btnAgregar.Location = new System.Drawing.Point(303, 575);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 11;
@@ -221,7 +212,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(432, 540);
+            this.btnCancelar.Location = new System.Drawing.Point(433, 575);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 15;
@@ -231,7 +222,7 @@
             // 
             // btnBusca
             // 
-            this.btnBusca.Location = new System.Drawing.Point(216, 540);
+            this.btnBusca.Location = new System.Drawing.Point(217, 575);
             this.btnBusca.Name = "btnBusca";
             this.btnBusca.Size = new System.Drawing.Size(75, 23);
             this.btnBusca.TabIndex = 12;
@@ -242,7 +233,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Enabled = false;
-            this.btnEliminar.Location = new System.Drawing.Point(12, 540);
+            this.btnEliminar.Location = new System.Drawing.Point(13, 575);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 14;
@@ -257,11 +248,13 @@
             this.cmbFrecuenciaPago.Items.AddRange(new object[] {
             "Mensual",
             "Trimestral",
-            "Semestral"});
+            "Semestral",
+            "Anual"});
             this.cmbFrecuenciaPago.Location = new System.Drawing.Point(386, 159);
             this.cmbFrecuenciaPago.Name = "cmbFrecuenciaPago";
             this.cmbFrecuenciaPago.Size = new System.Drawing.Size(120, 21);
             this.cmbFrecuenciaPago.TabIndex = 6;
+            this.cmbFrecuenciaPago.SelectedIndexChanged += new System.EventHandler(this.cmbFrecuenciaPago_SelectedIndexChanged);
             this.cmbFrecuenciaPago.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFrecuenciaPago_KeyPress);
             // 
             // label12
@@ -341,7 +334,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(432, 475);
+            this.btnLimpiar.Location = new System.Drawing.Point(432, 461);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 13;
@@ -462,7 +455,7 @@
             // 
             // txtVersion
             // 
-            this.txtVersion.Location = new System.Drawing.Point(38, 412);
+            this.txtVersion.Location = new System.Drawing.Point(12, 395);
             this.txtVersion.Name = "txtVersion";
             this.txtVersion.Size = new System.Drawing.Size(120, 20);
             this.txtVersion.TabIndex = 10;
@@ -472,7 +465,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(38, 396);
+            this.label17.Location = new System.Drawing.Point(12, 379);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(42, 13);
             this.label17.TabIndex = 50;
@@ -487,7 +480,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(303, 540);
+            this.button1.Location = new System.Drawing.Point(304, 575);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 52;
@@ -495,12 +488,79 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Image = global::ControlPolizas.Properties.Resources.business_1_;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(216, 265);
+            this.label1.TabIndex = 1;
+            this.label1.UseWaitCursor = true;
+            // 
+            // btnGenerarRecibos
+            // 
+            this.btnGenerarRecibos.Location = new System.Drawing.Point(12, 503);
+            this.btnGenerarRecibos.Name = "btnGenerarRecibos";
+            this.btnGenerarRecibos.Size = new System.Drawing.Size(75, 36);
+            this.btnGenerarRecibos.TabIndex = 54;
+            this.btnGenerarRecibos.Text = "Generar Recibos";
+            this.btnGenerarRecibos.UseVisualStyleBackColor = true;
+            this.btnGenerarRecibos.Click += new System.EventHandler(this.btnGenerarRecibos_Click);
+            // 
+            // txtNumeroRecibos
+            // 
+            this.txtNumeroRecibos.Enabled = false;
+            this.txtNumeroRecibos.Location = new System.Drawing.Point(111, 477);
+            this.txtNumeroRecibos.Name = "txtNumeroRecibos";
+            this.txtNumeroRecibos.Size = new System.Drawing.Size(38, 20);
+            this.txtNumeroRecibos.TabIndex = 55;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(99, 461);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(66, 13);
+            this.label15.TabIndex = 81;
+            this.label15.Text = "No. Recibos";
+            // 
+            // chkboxPagarPrimer
+            // 
+            this.chkboxPagarPrimer.AutoSize = true;
+            this.chkboxPagarPrimer.Location = new System.Drawing.Point(13, 438);
+            this.chkboxPagarPrimer.Name = "chkboxPagarPrimer";
+            this.chkboxPagarPrimer.Size = new System.Drawing.Size(177, 17);
+            this.chkboxPagarPrimer.TabIndex = 83;
+            this.chkboxPagarPrimer.Text = "Pago Fraccionado el primer mes";
+            this.chkboxPagarPrimer.UseVisualStyleBackColor = true;
+            // 
+            // btnRevisarRecibos
+            // 
+            this.btnRevisarRecibos.Enabled = false;
+            this.btnRevisarRecibos.Location = new System.Drawing.Point(12, 461);
+            this.btnRevisarRecibos.Name = "btnRevisarRecibos";
+            this.btnRevisarRecibos.Size = new System.Drawing.Size(75, 36);
+            this.btnRevisarRecibos.TabIndex = 84;
+            this.btnRevisarRecibos.Text = "Revisar Recibos";
+            this.btnRevisarRecibos.UseVisualStyleBackColor = true;
+            this.btnRevisarRecibos.Click += new System.EventHandler(this.btnRevisarRecibos_Click);
+            // 
             // Poliza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 575);
+            this.ClientSize = new System.Drawing.Size(519, 610);
             this.ControlBox = false;
+            this.Controls.Add(this.chkboxPagarPrimer);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.txtNumeroRecibos);
+            this.Controls.Add(this.btnGenerarRecibos);
             this.Controls.Add(this.txtAdjunto);
             this.Controls.Add(this.txtVersion);
             this.Controls.Add(this.label17);
@@ -529,9 +589,10 @@
             this.Controls.Add(this.chkboxNueva);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRevisarRecibos);
             this.Name = "Poliza";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Poliza";
+            this.Text = "Pólizas";
             this.Load += new System.EventHandler(this.Poliza_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -586,5 +647,10 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtAdjunto;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGenerarRecibos;
+        private System.Windows.Forms.TextBox txtNumeroRecibos;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.CheckBox chkboxPagarPrimer;
+        private System.Windows.Forms.Button btnRevisarRecibos;
     }
 }

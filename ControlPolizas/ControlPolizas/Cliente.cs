@@ -307,7 +307,7 @@ namespace ControlPolizas
                 //MessageBox.Show("Cliente nuevo Agregado " + PK_Cliente);
                 //query = "INSERT INTO Clientes VALUES(" + PK_Cliente + ",'" + nombre + "','" + RFC + "','" + fechaNacimiento + "','" + telefono + "','" + correoElectronico + "')";
 
-                query = "INSERT INTO DireccionCliente VALUES("+PK_DireccionCliente +","+ PK_Cliente + ",'" + calle + "','" + numero + "','" + colonia + "','" + estado + "','" + municipio + "','" +codigoPostal + "')";
+                query = "INSERT INTO DireccionClientes VALUES("+PK_DireccionCliente +","+ PK_Cliente + ",'" + calle + "','" + numero + "','" + colonia + "','" + estado + "','" + municipio + "','" +codigoPostal + "')";
 
 
                 commandoInsert = new SQLiteCommand(query, conexion);
@@ -331,7 +331,7 @@ namespace ControlPolizas
             {
                 conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
                 conexion.Open();
-                string queryMax = "SELECT max(PK_DireccionCliente) FROM DireccionCliente";
+                string queryMax = "SELECT max(PK_DireccionCliente) FROM DireccionClientes";
                 commandMax = new SQLiteCommand(queryMax, conexion);
                 string PK_ClienteString = commandMax.ExecuteScalar().ToString();
                 PK_DireccionCliente = Int32.Parse(PK_ClienteString);
@@ -381,6 +381,16 @@ namespace ControlPolizas
             {
                 MessageBox.Show("No se encontro el Cliente " + ev);
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMuniciopioDireccion_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

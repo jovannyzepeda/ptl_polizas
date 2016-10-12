@@ -35,6 +35,7 @@
             this.txtNombreCliente = new System.Windows.Forms.TextBox();
             this.txtRFC = new System.Windows.Forms.TextBox();
             this.Cumpleaños = new System.Windows.Forms.GroupBox();
+            this.dtpCumpleanios = new System.Windows.Forms.DateTimePicker();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.dtpCumpleanios = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -131,6 +131,14 @@
             this.Cumpleaños.Text = "Cumpleaños";
             this.Cumpleaños.Enter += new System.EventHandler(this.Cumpleaños_Enter);
             // 
+            // dtpCumpleanios
+            // 
+            this.dtpCumpleanios.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpCumpleanios.Location = new System.Drawing.Point(13, 19);
+            this.dtpCumpleanios.Name = "dtpCumpleanios";
+            this.dtpCumpleanios.Size = new System.Drawing.Size(97, 20);
+            this.dtpCumpleanios.TabIndex = 0;
+            // 
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(245, 400);
@@ -206,14 +214,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
-            // dtpCumpleanios
-            // 
-            this.dtpCumpleanios.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpCumpleanios.Location = new System.Drawing.Point(13, 19);
-            this.dtpCumpleanios.Name = "dtpCumpleanios";
-            this.dtpCumpleanios.Size = new System.Drawing.Size(97, 20);
-            this.dtpCumpleanios.TabIndex = 0;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label6);
@@ -223,9 +223,9 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.txtCodigoPotalDireccion);
-            this.groupBox1.Controls.Add(this.txtMuniciopioDireccion);
             this.groupBox1.Controls.Add(this.txtEstadoDireccion);
             this.groupBox1.Controls.Add(this.txtColoniaDireccion);
+            this.groupBox1.Controls.Add(this.txtMuniciopioDireccion);
             this.groupBox1.Controls.Add(this.txtNumeroCalle);
             this.groupBox1.Controls.Add(this.txtCalleDireccion);
             this.groupBox1.Location = new System.Drawing.Point(245, 205);
@@ -247,16 +247,17 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 95);
+            this.label5.Location = new System.Drawing.Point(180, 56);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 48;
             this.label5.Text = "Municipio";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(177, 56);
+            this.label4.Location = new System.Drawing.Point(20, 95);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 47;
@@ -298,14 +299,15 @@
             // 
             // txtMuniciopioDireccion
             // 
-            this.txtMuniciopioDireccion.Location = new System.Drawing.Point(23, 111);
+            this.txtMuniciopioDireccion.Location = new System.Drawing.Point(180, 72);
             this.txtMuniciopioDireccion.Name = "txtMuniciopioDireccion";
             this.txtMuniciopioDireccion.Size = new System.Drawing.Size(138, 20);
             this.txtMuniciopioDireccion.TabIndex = 42;
+            this.txtMuniciopioDireccion.TextChanged += new System.EventHandler(this.txtMuniciopioDireccion_TextChanged);
             // 
             // txtEstadoDireccion
             // 
-            this.txtEstadoDireccion.Location = new System.Drawing.Point(180, 72);
+            this.txtEstadoDireccion.Location = new System.Drawing.Point(23, 111);
             this.txtEstadoDireccion.Name = "txtEstadoDireccion";
             this.txtEstadoDireccion.Size = new System.Drawing.Size(131, 20);
             this.txtEstadoDireccion.TabIndex = 41;

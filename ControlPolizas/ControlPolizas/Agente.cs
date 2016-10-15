@@ -14,6 +14,7 @@ namespace ControlPolizas
     public partial class Agente : Form
     {
         SQLiteConnection conexion;
+        public int PK_Agente = 0;
 
         public Agente()
         {
@@ -23,7 +24,7 @@ namespace ControlPolizas
 
         public int ultimoAgente()
         {
-            int PK_Agente = 0;
+            
             SQLiteCommand commandMax;
             try
             {
@@ -89,7 +90,7 @@ namespace ControlPolizas
             btnAgregarAgente.Enabled = true;
             btnBuscarAgente.Enabled = true;
             btnCancelar.Enabled = true;
-            btnEliminar.Enabled = false;
+            //btnEliminar.Enabled = false;
 
         }
 
@@ -166,7 +167,7 @@ namespace ControlPolizas
             {
                 nombre = txtNombreAgente.Text;
                 numeroAgente = Int32.Parse(txtNumeroAgente.Text);
-                int PK_Agente = ultimoAgente();
+                PK_Agente = ultimoAgente();
 
                 contra1 = txtContraseña.Text;
                 contra2 = txtConfirmarContraseña.Text;
@@ -209,7 +210,7 @@ namespace ControlPolizas
                 {
                     buscarAgente(txtNombreAgente.Text);
 
-                    btnEliminar.Enabled = true;
+                    //btnEliminar.Enabled = true;
                     btnAgregarAgente.Enabled = false;
                     btnBuscarAgente.Enabled = false;
                 }
@@ -222,7 +223,7 @@ namespace ControlPolizas
 
         public void buscarAgente(String nombre)
         {
-            int pk_Agente = 7;
+            //int pk_Agente = 7;
             SQLiteCommand command;
             SQLiteDataReader lectorDatos;
             String query = "SELECT PK_Agente,NumeroAgente,Nombre,Contrasenia FROM Agentes WHERE Nombre='" + nombre + "'";
@@ -237,7 +238,7 @@ namespace ControlPolizas
 
                 while (lectorDatos.Read())
                 {
-                    pk_Agente = lectorDatos.GetInt16(0);
+                    PK_Agente = lectorDatos.GetInt16(0);
                     txtNumeroAgente.Text = lectorDatos.GetInt16(1).ToString();
                     txtNombreAgente.Text = lectorDatos.GetString(2);
                     txtContraseña.Text = lectorDatos.GetString(3);
@@ -255,10 +256,81 @@ namespace ControlPolizas
             }
         }
 
+
+
+
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            LimpiarText();
-            valoresDefaultBotones();
+            
+        }
+       
+        public void actualizarAgente(int PK_Agente, int numeroAgente, String nombre,String contrasenia)
+        {
+            SQLiteCommand commandoInsert;
+            // int PK_Agente;
+            string query;
+
+
+            try
+            {
+
+                //PK_Agente = ultimoAgente();
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+                //MessageBox.Show("Cliente nuevo Agregado " + PK_Cliente);
+                //query = "INSERT INTO Clientes VALUES(" + PK_Cliente + ",'" + nombre + "','" + RFC + "','" + fechaNacimiento + "','" + telefono + "','" + correoElectronico + "')";
+
+                query = "UPDATE  Agentes SET NumeroAgente="+ numeroAgente + ",Nombre='" + nombre + "',Contrasenia='" + contrasenia + "' WHERE PK_Agente="+PK_Agente;
+                MessageBox.Show(query);
+
+                commandoInsert = new SQLiteCommand(query, conexion);
+                commandoInsert.ExecuteNonQuery();
+                MessageBox.Show("Ha Actualizado Un Agente");
+                conexion.Close();
+
+                //PK_Cliente = 0;
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Error al modificar los datos del agente " + ev);
+            }
+
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            String nombre, contrasenia = "", contra1, contra2;
+            int numeroAgente;
+
+            try
+            {
+                nombre = txtNombreAgente.Text;
+                numeroAgente = Int32.Parse(txtNumeroAgente.Text);
+                //int PK_Agente = ultimoAgente();
+
+                contra1 = txtContraseña.Text;
+                contra2 = txtConfirmarContraseña.Text;
+
+                if (contra1.Equals(contra2))
+                {
+                    contrasenia = txtContraseña.Text;
+                    actualizarAgente(PK_Agente, numeroAgente, nombre, contrasenia);
+                    sugerenciaAgentes();
+
+                    //LimpiarText();
+                    //valoresDefaultBotones();
+                }
+                else
+                {
+                    MessageBox.Show("Las contraseñias no coinciden");
+                }
+
+
+            }
+            catch (Exception ev)
+            {
+            }
         }
     }
 }

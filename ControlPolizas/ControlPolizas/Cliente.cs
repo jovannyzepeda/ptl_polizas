@@ -15,7 +15,7 @@ namespace ControlPolizas
     {
         Direccion direccion;
         SQLiteConnection conexion;
-
+        int PK_Cliente = 0;
         public void valoreDefaultBotones()
         {
             btnEliminar.Enabled = false;
@@ -23,6 +23,7 @@ namespace ControlPolizas
             btnCancelar.Enabled = true;
             //btnDireccion.Enabled = true;
             btnBuscar.Enabled = true;
+            btnAgregarCliente.Visible = true;
         }
         public void limpiarTextBox()
         {
@@ -112,7 +113,8 @@ namespace ControlPolizas
 
                     btnEliminar.Enabled = true;
                     btnBuscar.Enabled = false;
-                    btnAgregarCliente.Enabled = false;
+                    //btnAgregarCliente.Enabled = false;
+                    btnAgregarCliente.Visible = false;
                 }
                 else
                 {
@@ -185,12 +187,55 @@ namespace ControlPolizas
             valoreDefaultBotones();
         }
 
+        public void eliminarCliente(int PK_Cliente)
+        {
+           // SQLiteCommand commandoInsert;
+            //int PK_Cliente;
+            string query;
+
+            try
+            {
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+
+                query = "DELETE FROM Clientes WHERE PK_Cliente=" + PK_Cliente;
+                //MessageBox.Show(query);
+                using (SQLiteCommand cmd = new SQLiteCommand(query, conexion))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                MessageBox.Show("Cliente Eliminado");
+                conexion.Close();
+
+                limpiarTextBox();
+                valoreDefaultBotones();
+
+                //PK_Poliza = 0;
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Error al Eliminar el Cliente " + ev);
+            }
+        }
+
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            MessageBoxButtons botones = MessageBoxButtons.YesNo;
+
+           DialogResult dialogResult = MessageBox.Show("¿Desea Eliminar el Cliente?, esto implica eliminar tambien todas las polizas pertenecientes a este cliente", "ATENCION!",botones, MessageBoxIcon.Exclamation,MessageBoxDefaultButton.Button2);
+            if (dialogResult == DialogResult.Yes)
+            {
+                eliminarCliente(PK_Cliente);
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                
+            }
+          
 
             //limpiarComboBox();
-            limpiarTextBox();
-            valoreDefaultBotones();
+           
         }
 
 
@@ -233,7 +278,7 @@ namespace ControlPolizas
 
         public int ultimoCliente()
         {
-            int PK_Cliente=0;
+            
             SQLiteCommand commandMax;
             try
             {
@@ -260,7 +305,7 @@ namespace ControlPolizas
 
         public void buscarCliente(String nombre)
         {
-            int pk_Cliente=7;
+            //int pk_Cliente=7;
             SQLiteCommand command;
             SQLiteDataReader lectorDatos;
             String query = "SELECT PK_Cliente,Nombre,RFC,FechaNacimiento,Telefono,CorreoElectronico FROM Clientes WHERE Nombre='"+nombre+"'";
@@ -275,7 +320,7 @@ namespace ControlPolizas
 
                 while (lectorDatos.Read())
                 {
-                    pk_Cliente = lectorDatos.GetInt16(0);
+                    PK_Cliente = lectorDatos.GetInt16(0);
                     txtRFC.Text = lectorDatos.GetString(2);
                     txtTelefono.Text= lectorDatos.GetString(4);
                     txtEmail.Text= lectorDatos.GetString(5);
@@ -283,7 +328,7 @@ namespace ControlPolizas
                 }
 
                 conexion.Close();
-                buscarDireccionCliente(pk_Cliente);
+                buscarDireccionCliente(PK_Cliente);
 
             }catch(Exception ev)
             {
@@ -355,7 +400,7 @@ namespace ControlPolizas
         {
             SQLiteCommand command;
             SQLiteDataReader lectorDatos;
-            String query = "SELECT Calle,NumeroInterior,Colonia,Estado,Municipio,CodigoPostal FROM DireccionCliente WHERE FK_Cliente="+PK_Cliente;
+            String query = "SELECT Calle,NumeroInterior,Colonia,Estado,Municipio,CodigoPostal FROM DireccionClientes WHERE FK_Cliente="+PK_Cliente;
             try
             {
 
@@ -372,7 +417,7 @@ namespace ControlPolizas
                     txtColoniaDireccion.Text = lectorDatos.GetString(2);
                     txtEstadoDireccion.Text = lectorDatos.GetString(3);
                     txtMuniciopioDireccion.Text = lectorDatos.GetString(4);
-                    txtCodigoPotalDireccion.Text = lectorDatos.GetString(5);
+                    txtCodigoPotalDireccion.Text = lectorDatos.GetInt32(5).ToString();
                 }
 
                 conexion.Close();
@@ -381,6 +426,108 @@ namespace ControlPolizas
             {
                 MessageBox.Show("No se encontro el Cliente " + ev);
             }
+        }
+
+        public void actualizarCliente(int PK_Cliente, String nombre, String rfc, String fechaNacimiento, String telefono, String correo)
+        {
+            SQLiteCommand commandoInsert;
+            //int PK_Cliente;
+            string query;
+
+            try
+            {
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+
+                query = "UPDATE Clientes set Nombre='" + nombre + "',RFC='" + rfc + "',FechaNacimiento='" + fechaNacimiento + "',Telefono='" + telefono + "',CorreoElectronico='" + correo + "' WHERE PK_Cliente="+PK_Cliente;
+                //MessageBox.Show(query);
+                commandoInsert = new SQLiteCommand(query, conexion);
+                commandoInsert.ExecuteNonQuery();
+                MessageBox.Show("Cliente Actualizado");
+                conexion.Close();
+
+                //PK_Poliza = 0;
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Error al Actualizar el Cliente " + ev);
+            }
+        }
+
+
+        public void actualizarDireccionCliente(int PK_Direccion,int FK_Cliente, String calle, String numeroInterior, String colonia, String estado, String municipio,String codigoPostal)
+        {
+            SQLiteCommand commandoInsert;
+            //int PK_Cliente;
+            string query;
+
+            try
+            {
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+
+                query = "UPDATE DireccionClientes set Calle='" + calle + "',NumeroInterior='" + numeroInterior + "',Colonia='" + colonia+ "',Estado='" + estado + "',Municipio='" + municipio+ "',CodigoPostal='"+codigoPostal+"' WHERE FK_Cliente="+FK_Cliente+" AND PK_DireccionCliente="+PK_Direccion;
+               // MessageBox.Show(query);
+                commandoInsert = new SQLiteCommand(query, conexion);
+                commandoInsert.ExecuteNonQuery();
+                MessageBox.Show("Direccion Actualizada");
+                conexion.Close();
+
+                //PK_Poliza = 0;
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Error al Actualizar el Cliente " + ev);
+            }
+        }
+
+
+        public int buscarPK_Cliente(String NombreCliente)
+        {
+            int PK_Cliente = 0;
+            SQLiteCommand commandMax;
+            try
+            {
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+
+                string queryMax = "SELECT PK_Cliente FROM Clientes WHERE Nombre='" + NombreCliente + "'";
+                commandMax = new SQLiteCommand(queryMax, conexion);
+                string PK_ClienteString = commandMax.ExecuteScalar().ToString();
+                PK_Cliente = Int32.Parse(PK_ClienteString);
+
+                conexion.Close();
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("No se encontró el cliente solicitado " + ev);
+            }
+
+            return PK_Cliente;
+        }
+
+        public int buscarPK_DireccionCliente(int FK_Cliente)
+        {
+            int PK_DireccionCliente = 0;
+            SQLiteCommand commandMax;
+            try
+            {
+                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion.Open();
+
+                string queryMax = "SELECT PK_DireccionCliente FROM DireccionClientes WHERE FK_Cliente=" + FK_Cliente;
+                commandMax = new SQLiteCommand(queryMax, conexion);
+                string PK_DireccionClienteString = commandMax.ExecuteScalar().ToString();
+                PK_DireccionCliente = Int32.Parse(PK_DireccionClienteString);
+
+                conexion.Close();
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("No se encontró el cliente solicitado " + ev);
+            }
+
+            return PK_DireccionCliente;
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -392,5 +539,40 @@ namespace ControlPolizas
         {
 
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            //PK_Cliente = buscarPK_Cliente(txtNombreCliente.Text);
+            //MessageBox.Show(PK_Cliente.ToString());
+            int PK_DireccionCliente = buscarPK_DireccionCliente(PK_Cliente);
+
+            String nombreCliente, RFC, fechaNacimiento, correoElectronico, telefono;
+            String calle, numero, colonia, estado, municipio, codigoPostal;
+
+            nombreCliente = txtNombreCliente.Text;
+            RFC = txtRFC.Text;
+            fechaNacimiento = dtpCumpleanios.Value.ToString("yyyy-MM-dd");
+            telefono = txtTelefono.Text;
+            correoElectronico = txtEmail.Text;
+
+            calle = txtCalleDireccion.Text;
+            numero = txtNumeroCalle.Text;
+            colonia = txtColoniaDireccion.Text;
+            estado = txtEstadoDireccion.Text;
+            municipio = txtEstadoDireccion.Text;
+            codigoPostal = txtCodigoPotalDireccion.Text;
+
+            try
+            {
+                actualizarCliente(PK_Cliente, nombreCliente, RFC, fechaNacimiento, telefono, correoElectronico);
+                actualizarDireccionCliente(PK_DireccionCliente, PK_Cliente, calle, numero, colonia, estado, municipio, codigoPostal);
+                sugerenciaClientes();
+                PK_Cliente = 0;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error Al Actualizar Cliente, verifique la informacion");
+            }
+            }
     }
 }

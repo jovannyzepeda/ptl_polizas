@@ -41,7 +41,7 @@
             this.button1.Location = new System.Drawing.Point(191, 106);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 2;
             this.button1.Text = "&Autenticar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -53,7 +53,7 @@
             this.cmbAgente.Location = new System.Drawing.Point(25, 28);
             this.cmbAgente.Name = "cmbAgente";
             this.cmbAgente.Size = new System.Drawing.Size(240, 21);
-            this.cmbAgente.TabIndex = 2;
+            this.cmbAgente.TabIndex = 0;
             // 
             // label1
             // 
@@ -79,14 +79,14 @@
             this.txtContrasenia.Name = "txtContrasenia";
             this.txtContrasenia.PasswordChar = '*';
             this.txtContrasenia.Size = new System.Drawing.Size(241, 20);
-            this.txtContrasenia.TabIndex = 6;
+            this.txtContrasenia.TabIndex = 1;
             // 
             // btnSalir
             // 
             this.btnSalir.Location = new System.Drawing.Point(25, 106);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 7;
+            this.btnSalir.TabIndex = 3;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);

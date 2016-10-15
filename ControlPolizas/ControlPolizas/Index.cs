@@ -34,7 +34,7 @@ namespace ControlPolizas
         {
             String fecha1 = thisDay.AddDays(28).ToString("yyyy-MM-dd");
             String fecha2= thisDay.AddDays(33).ToString("yyyy-MM-dd");
-            MessageBox.Show(fecha1+" "+fecha2);
+            //MessageBox.Show(fecha1+" "+fecha2);
 
             String query = "SELECT c.Nombre AS 'Nombre', p.NumeroPoliza as 'Numero de poliza', tp.TipoPoliza as 'Ramo', p.FinVigencia as 'Vigencia', p.ImporteTotal as 'Importe total' from Clientes c,Polizas p, TipoPolizas tp where c.PK_Cliente=p.FK_Cliente and tp.PK_TipoPoliza=p.FK_TipoPoliza AND p.FinVigencia BETWEEN '" + fecha1 + "' AND '" + fecha2 + "'";
             //String pruebaQuery="Select * from Polizas";

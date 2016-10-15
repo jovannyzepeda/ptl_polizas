@@ -52,11 +52,12 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.txtCodigoPotalDireccion = new System.Windows.Forms.TextBox();
-            this.txtMuniciopioDireccion = new System.Windows.Forms.TextBox();
             this.txtEstadoDireccion = new System.Windows.Forms.TextBox();
             this.txtColoniaDireccion = new System.Windows.Forms.TextBox();
+            this.txtMuniciopioDireccion = new System.Windows.Forms.TextBox();
             this.txtNumeroCalle = new System.Windows.Forms.TextBox();
             this.txtCalleDireccion = new System.Windows.Forms.TextBox();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.Cumpleaños.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +67,7 @@
             this.btnAgregarCliente.Location = new System.Drawing.Point(391, 400);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
             this.btnAgregarCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregarCliente.TabIndex = 5;
+            this.btnAgregarCliente.TabIndex = 6;
             this.btnAgregarCliente.Text = "&Agregar";
             this.btnAgregarCliente.UseVisualStyleBackColor = true;
             this.btnAgregarCliente.Click += new System.EventHandler(this.btnAgregarCliente_Click);
@@ -126,7 +127,7 @@
             this.Cumpleaños.Location = new System.Drawing.Point(447, 151);
             this.Cumpleaños.Name = "Cumpleaños";
             this.Cumpleaños.Size = new System.Drawing.Size(118, 49);
-            this.Cumpleaños.TabIndex = 3;
+            this.Cumpleaños.TabIndex = 4;
             this.Cumpleaños.TabStop = false;
             this.Cumpleaños.Text = "Cumpleaños";
             this.Cumpleaños.Enter += new System.EventHandler(this.Cumpleaños_Enter);
@@ -144,7 +145,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(245, 400);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 10;
+            this.btnBuscar.TabIndex = 8;
             this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.button1_Click);
@@ -172,7 +173,7 @@
             this.txtEmail.Location = new System.Drawing.Point(268, 170);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(160, 20);
-            this.txtEmail.TabIndex = 4;
+            this.txtEmail.TabIndex = 3;
             // 
             // label8
             // 
@@ -209,7 +210,7 @@
             this.button1.Location = new System.Drawing.Point(481, 348);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 18;
+            this.button1.TabIndex = 7;
             this.button1.Text = "&Limpiar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
@@ -231,7 +232,7 @@
             this.groupBox1.Location = new System.Drawing.Point(245, 205);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(320, 137);
-            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dirección";
             // 
@@ -295,43 +296,53 @@
             this.txtCodigoPotalDireccion.Location = new System.Drawing.Point(180, 111);
             this.txtCodigoPotalDireccion.Name = "txtCodigoPotalDireccion";
             this.txtCodigoPotalDireccion.Size = new System.Drawing.Size(131, 20);
-            this.txtCodigoPotalDireccion.TabIndex = 43;
-            // 
-            // txtMuniciopioDireccion
-            // 
-            this.txtMuniciopioDireccion.Location = new System.Drawing.Point(180, 72);
-            this.txtMuniciopioDireccion.Name = "txtMuniciopioDireccion";
-            this.txtMuniciopioDireccion.Size = new System.Drawing.Size(138, 20);
-            this.txtMuniciopioDireccion.TabIndex = 42;
-            this.txtMuniciopioDireccion.TextChanged += new System.EventHandler(this.txtMuniciopioDireccion_TextChanged);
+            this.txtCodigoPotalDireccion.TabIndex = 5;
             // 
             // txtEstadoDireccion
             // 
             this.txtEstadoDireccion.Location = new System.Drawing.Point(23, 111);
             this.txtEstadoDireccion.Name = "txtEstadoDireccion";
             this.txtEstadoDireccion.Size = new System.Drawing.Size(131, 20);
-            this.txtEstadoDireccion.TabIndex = 41;
+            this.txtEstadoDireccion.TabIndex = 4;
             // 
             // txtColoniaDireccion
             // 
             this.txtColoniaDireccion.Location = new System.Drawing.Point(23, 72);
             this.txtColoniaDireccion.Name = "txtColoniaDireccion";
             this.txtColoniaDireccion.Size = new System.Drawing.Size(138, 20);
-            this.txtColoniaDireccion.TabIndex = 40;
+            this.txtColoniaDireccion.TabIndex = 2;
+            // 
+            // txtMuniciopioDireccion
+            // 
+            this.txtMuniciopioDireccion.Location = new System.Drawing.Point(180, 72);
+            this.txtMuniciopioDireccion.Name = "txtMuniciopioDireccion";
+            this.txtMuniciopioDireccion.Size = new System.Drawing.Size(138, 20);
+            this.txtMuniciopioDireccion.TabIndex = 3;
+            this.txtMuniciopioDireccion.TextChanged += new System.EventHandler(this.txtMuniciopioDireccion_TextChanged);
             // 
             // txtNumeroCalle
             // 
             this.txtNumeroCalle.Location = new System.Drawing.Point(243, 33);
             this.txtNumeroCalle.Name = "txtNumeroCalle";
             this.txtNumeroCalle.Size = new System.Drawing.Size(68, 20);
-            this.txtNumeroCalle.TabIndex = 39;
+            this.txtNumeroCalle.TabIndex = 1;
             // 
             // txtCalleDireccion
             // 
             this.txtCalleDireccion.Location = new System.Drawing.Point(23, 33);
             this.txtCalleDireccion.Name = "txtCalleDireccion";
             this.txtCalleDireccion.Size = new System.Drawing.Size(201, 20);
-            this.txtCalleDireccion.TabIndex = 38;
+            this.txtCalleDireccion.TabIndex = 0;
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(391, 400);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(75, 23);
+            this.btnModificar.TabIndex = 20;
+            this.btnModificar.Text = "&Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // Cliente
             // 
@@ -354,6 +365,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnAgregarCliente);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnModificar);
             this.Name = "Cliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cliente";
@@ -397,5 +409,6 @@
         private System.Windows.Forms.TextBox txtColoniaDireccion;
         private System.Windows.Forms.TextBox txtNumeroCalle;
         private System.Windows.Forms.TextBox txtCalleDireccion;
+        private System.Windows.Forms.Button btnModificar;
     }
 }

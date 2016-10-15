@@ -70,7 +70,6 @@
             this.txtAdjunto = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnGenerarRecibos = new System.Windows.Forms.Button();
             this.txtNumeroRecibos = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.chkboxPagarPrimer = new System.Windows.Forms.CheckBox();
@@ -82,10 +81,10 @@
             // chkboxNueva
             // 
             this.chkboxNueva.AutoSize = true;
-            this.chkboxNueva.Location = new System.Drawing.Point(449, 25);
+            this.chkboxNueva.Location = new System.Drawing.Point(274, 22);
             this.chkboxNueva.Name = "chkboxNueva";
             this.chkboxNueva.Size = new System.Drawing.Size(58, 17);
-            this.chkboxNueva.TabIndex = 1;
+            this.chkboxNueva.TabIndex = 0;
             this.chkboxNueva.Text = "Nueva";
             this.chkboxNueva.UseVisualStyleBackColor = true;
             this.chkboxNueva.CheckedChanged += new System.EventHandler(this.chkboxNueva_CheckedChanged);
@@ -95,16 +94,16 @@
             // 
             this.txtNumeroPoliza.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtNumeroPoliza.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtNumeroPoliza.Location = new System.Drawing.Point(257, 25);
+            this.txtNumeroPoliza.Location = new System.Drawing.Point(342, 22);
             this.txtNumeroPoliza.Name = "txtNumeroPoliza";
             this.txtNumeroPoliza.Size = new System.Drawing.Size(166, 20);
-            this.txtNumeroPoliza.TabIndex = 0;
+            this.txtNumeroPoliza.TabIndex = 1;
             this.txtNumeroPoliza.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeroPoliza_KeyPress);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(254, 9);
+            this.label2.Location = new System.Drawing.Point(339, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 13);
             this.label2.TabIndex = 3;
@@ -164,6 +163,7 @@
             // 
             // cmbCompania
             // 
+            this.cmbCompania.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCompania.FormattingEnabled = true;
             this.cmbCompania.Location = new System.Drawing.Point(386, 103);
             this.cmbCompania.Name = "cmbCompania";
@@ -187,7 +187,7 @@
             this.cmbAgente.Location = new System.Drawing.Point(12, 351);
             this.cmbAgente.Name = "cmbAgente";
             this.cmbAgente.Size = new System.Drawing.Size(137, 21);
-            this.cmbAgente.TabIndex = 9;
+            this.cmbAgente.TabIndex = 10;
             this.cmbAgente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbAgente_KeyPress);
             // 
             // btnAdjuntoPoliza
@@ -195,7 +195,7 @@
             this.btnAdjuntoPoliza.Location = new System.Drawing.Point(135, 273);
             this.btnAdjuntoPoliza.Name = "btnAdjuntoPoliza";
             this.btnAdjuntoPoliza.Size = new System.Drawing.Size(54, 45);
-            this.btnAdjuntoPoliza.TabIndex = 28;
+            this.btnAdjuntoPoliza.TabIndex = 9;
             this.btnAdjuntoPoliza.Text = "Adjuntar &Póliza";
             this.btnAdjuntoPoliza.UseVisualStyleBackColor = true;
             this.btnAdjuntoPoliza.Click += new System.EventHandler(this.button1_Click);
@@ -205,7 +205,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(303, 575);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregar.TabIndex = 11;
+            this.btnAgregar.TabIndex = 13;
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -215,7 +215,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(433, 575);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 15;
+            this.btnCancelar.TabIndex = 16;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.button3_Click);
@@ -272,7 +272,7 @@
             this.groupBox1.Controls.Add(this.dtpFinVigencia);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.dtpInicioVigencia);
-            this.groupBox1.Location = new System.Drawing.Point(303, 186);
+            this.groupBox1.Location = new System.Drawing.Point(257, 186);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(157, 89);
             this.groupBox1.TabIndex = 7;
@@ -337,7 +337,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(432, 461);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 13;
+            this.btnLimpiar.TabIndex = 15;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -458,7 +458,7 @@
             this.txtVersion.Location = new System.Drawing.Point(12, 395);
             this.txtVersion.Name = "txtVersion";
             this.txtVersion.Size = new System.Drawing.Size(120, 20);
-            this.txtVersion.TabIndex = 10;
+            this.txtVersion.TabIndex = 11;
             this.txtVersion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtVersion_KeyDown);
             this.txtVersion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVersion_KeyPress);
             // 
@@ -503,16 +503,6 @@
             this.label1.TabIndex = 1;
             this.label1.UseWaitCursor = true;
             // 
-            // btnGenerarRecibos
-            // 
-            this.btnGenerarRecibos.Location = new System.Drawing.Point(12, 503);
-            this.btnGenerarRecibos.Name = "btnGenerarRecibos";
-            this.btnGenerarRecibos.Size = new System.Drawing.Size(75, 36);
-            this.btnGenerarRecibos.TabIndex = 54;
-            this.btnGenerarRecibos.Text = "Generar Recibos";
-            this.btnGenerarRecibos.UseVisualStyleBackColor = true;
-            this.btnGenerarRecibos.Click += new System.EventHandler(this.btnGenerarRecibos_Click);
-            // 
             // txtNumeroRecibos
             // 
             this.txtNumeroRecibos.Enabled = false;
@@ -535,9 +525,9 @@
             this.chkboxPagarPrimer.AutoSize = true;
             this.chkboxPagarPrimer.Location = new System.Drawing.Point(13, 438);
             this.chkboxPagarPrimer.Name = "chkboxPagarPrimer";
-            this.chkboxPagarPrimer.Size = new System.Drawing.Size(177, 17);
-            this.chkboxPagarPrimer.TabIndex = 83;
-            this.chkboxPagarPrimer.Text = "Pago Fraccionado el primer mes";
+            this.chkboxPagarPrimer.Size = new System.Drawing.Size(176, 17);
+            this.chkboxPagarPrimer.TabIndex = 12;
+            this.chkboxPagarPrimer.Text = "Derecho de poliza el primer mes";
             this.chkboxPagarPrimer.UseVisualStyleBackColor = true;
             // 
             // btnRevisarRecibos
@@ -546,7 +536,7 @@
             this.btnRevisarRecibos.Location = new System.Drawing.Point(12, 461);
             this.btnRevisarRecibos.Name = "btnRevisarRecibos";
             this.btnRevisarRecibos.Size = new System.Drawing.Size(75, 36);
-            this.btnRevisarRecibos.TabIndex = 84;
+            this.btnRevisarRecibos.TabIndex = 14;
             this.btnRevisarRecibos.Text = "Revisar Recibos";
             this.btnRevisarRecibos.UseVisualStyleBackColor = true;
             this.btnRevisarRecibos.Click += new System.EventHandler(this.btnRevisarRecibos_Click);
@@ -560,7 +550,6 @@
             this.Controls.Add(this.chkboxPagarPrimer);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtNumeroRecibos);
-            this.Controls.Add(this.btnGenerarRecibos);
             this.Controls.Add(this.txtAdjunto);
             this.Controls.Add(this.txtVersion);
             this.Controls.Add(this.label17);
@@ -647,7 +636,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtAdjunto;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnGenerarRecibos;
         private System.Windows.Forms.TextBox txtNumeroRecibos;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.CheckBox chkboxPagarPrimer;

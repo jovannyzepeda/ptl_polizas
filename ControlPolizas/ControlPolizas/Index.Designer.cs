@@ -43,23 +43,23 @@
             this.vigenciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnSalirIndex = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dgvRecibosPorVencer = new System.Windows.Forms.DataGridView();
+            this.dgvPendientes = new System.Windows.Forms.DataGridView();
+            this.dgvCumpleaños = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.btnAgente = new System.Windows.Forms.Button();
             this.btnPoliza = new System.Windows.Forms.Button();
             this.BtnCliente = new System.Windows.Forms.Button();
-            this.btnSalirIndex = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgvPendientes = new System.Windows.Forms.DataGridView();
-            this.dgvRecibosPorVencer = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dtpCumpleaños = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPendientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecibosPorVencer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpCumpleaños)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPendientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCumpleaños)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -134,8 +134,8 @@
             this.clientesToolStripMenuItem,
             this.vigenciasToolStripMenuItem});
             this.polizaToolStripMenuItem1.Name = "polizaToolStripMenuItem1";
-            this.polizaToolStripMenuItem1.Size = new System.Drawing.Size(105, 22);
-            this.polizaToolStripMenuItem1.Text = "Poliza";
+            this.polizaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.polizaToolStripMenuItem1.Text = "Polizas";
             this.polizaToolStripMenuItem1.Click += new System.EventHandler(this.polizaToolStripMenuItem1_Click);
             // 
             // primasNuevasToolStripMenuItem
@@ -157,12 +157,95 @@
             this.vigenciasToolStripMenuItem.Name = "vigenciasToolStripMenuItem";
             this.vigenciasToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.vigenciasToolStripMenuItem.Text = "Vigencias";
+            this.vigenciasToolStripMenuItem.Click += new System.EventHandler(this.vigenciasToolStripMenuItem_Click);
             // 
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
             this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.acercaDeToolStripMenuItem.Text = "Acerca de...";
+            // 
+            // btnSalirIndex
+            // 
+            this.btnSalirIndex.Location = new System.Drawing.Point(847, 390);
+            this.btnSalirIndex.Name = "btnSalirIndex";
+            this.btnSalirIndex.Size = new System.Drawing.Size(75, 23);
+            this.btnSalirIndex.TabIndex = 7;
+            this.btnSalirIndex.Text = "Salir";
+            this.btnSalirIndex.UseVisualStyleBackColor = true;
+            this.btnSalirIndex.Click += new System.EventHandler(this.btnSalirIndex_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.dgvRecibosPorVencer);
+            this.groupBox1.Controls.Add(this.dgvPendientes);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.DarkRed;
+            this.groupBox1.Location = new System.Drawing.Point(128, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(546, 357);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Por Vencer";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(221, 184);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Recibos";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(221, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Pólizas";
+            // 
+            // dgvRecibosPorVencer
+            // 
+            this.dgvRecibosPorVencer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRecibosPorVencer.Location = new System.Drawing.Point(6, 204);
+            this.dgvRecibosPorVencer.Name = "dgvRecibosPorVencer";
+            this.dgvRecibosPorVencer.Size = new System.Drawing.Size(529, 137);
+            this.dgvRecibosPorVencer.TabIndex = 1;
+            // 
+            // dgvPendientes
+            // 
+            this.dgvPendientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPendientes.Location = new System.Drawing.Point(6, 44);
+            this.dgvPendientes.Name = "dgvPendientes";
+            this.dgvPendientes.Size = new System.Drawing.Size(529, 137);
+            this.dgvPendientes.TabIndex = 0;
+            this.dgvPendientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // dgvCumpleaños
+            // 
+            this.dgvCumpleaños.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCumpleaños.Location = new System.Drawing.Point(699, 71);
+            this.dgvCumpleaños.Name = "dgvCumpleaños";
+            this.dgvCumpleaños.Size = new System.Drawing.Size(223, 297);
+            this.dgvCumpleaños.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Peru;
+            this.label3.Location = new System.Drawing.Point(753, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(120, 16);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Cumpleaños de:";
             // 
             // button1
             // 
@@ -228,88 +311,6 @@
             this.BtnCliente.UseVisualStyleBackColor = false;
             this.BtnCliente.Click += new System.EventHandler(this.BtnCliente_Click);
             // 
-            // btnSalirIndex
-            // 
-            this.btnSalirIndex.Location = new System.Drawing.Point(847, 390);
-            this.btnSalirIndex.Name = "btnSalirIndex";
-            this.btnSalirIndex.Size = new System.Drawing.Size(75, 23);
-            this.btnSalirIndex.TabIndex = 7;
-            this.btnSalirIndex.Text = "Salir";
-            this.btnSalirIndex.UseVisualStyleBackColor = true;
-            this.btnSalirIndex.Click += new System.EventHandler(this.btnSalirIndex_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dgvRecibosPorVencer);
-            this.groupBox1.Controls.Add(this.dgvPendientes);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox1.Location = new System.Drawing.Point(128, 27);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(546, 357);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Por Vencer";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // dgvPendientes
-            // 
-            this.dgvPendientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPendientes.Location = new System.Drawing.Point(6, 44);
-            this.dgvPendientes.Name = "dgvPendientes";
-            this.dgvPendientes.Size = new System.Drawing.Size(529, 137);
-            this.dgvPendientes.TabIndex = 0;
-            this.dgvPendientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // dgvRecibosPorVencer
-            // 
-            this.dgvRecibosPorVencer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRecibosPorVencer.Location = new System.Drawing.Point(6, 204);
-            this.dgvRecibosPorVencer.Name = "dgvRecibosPorVencer";
-            this.dgvRecibosPorVencer.Size = new System.Drawing.Size(529, 137);
-            this.dgvRecibosPorVencer.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(221, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Pólizas";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(221, 184);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Recibos";
-            // 
-            // dtpCumpleaños
-            // 
-            this.dtpCumpleaños.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtpCumpleaños.Location = new System.Drawing.Point(699, 71);
-            this.dtpCumpleaños.Name = "dtpCumpleaños";
-            this.dtpCumpleaños.Size = new System.Drawing.Size(223, 297);
-            this.dtpCumpleaños.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Peru;
-            this.label3.Location = new System.Drawing.Point(753, 43);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 16);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Cumpleaños de:";
-            // 
             // FrmIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,7 +318,7 @@
             this.ClientSize = new System.Drawing.Size(940, 425);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dtpCumpleaños);
+            this.Controls.Add(this.dgvCumpleaños);
             this.Controls.Add(this.btnSalirIndex);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
@@ -334,9 +335,9 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPendientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecibosPorVencer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpCumpleaños)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPendientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCumpleaños)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,7 +368,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.DataGridView dgvRecibosPorVencer;
-        public System.Windows.Forms.DataGridView dtpCumpleaños;
+        public System.Windows.Forms.DataGridView dgvCumpleaños;
         private System.Windows.Forms.Label label3;
     }
 }

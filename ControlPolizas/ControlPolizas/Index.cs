@@ -74,7 +74,7 @@ namespace ControlPolizas
 
             String query = "SELECT p.NumeroPoliza,c.Nombre,rp.InicioVigencia,rp.FinVigencia,rp.Monto FROM Clientes c, Polizas p, RecibosPoliza rp, TipoPolizas tp, Companias co WHERE p.FK_Cliente=c.PK_Cliente and p.FK_Compania=co.PK_Compania and p.FK_TipoPoliza=tp.PK_TipoPoliza AND rp.FK_Poliza=p.PK_Poliza  AND rp.FinVigencia BETWEEN '"+fecha1+"' AND '"+fecha2+"'";
             //String pruebaQuery="Select * from Polizas";
-            MessageBox.Show(query);
+            //MessageBox.Show(query);
             DataTable dataTable = new DataTable();
             try
             {
@@ -101,6 +101,40 @@ namespace ControlPolizas
             }
         }
 
+        public void cumpleañosDeHoy()
+        {
+            String day = thisDay.ToString("dd");
+            String month = thisDay.ToString("MM");
+            //MessageBox.Show("path "+System.IO.Directory.GetCurrentDirectory()+"\\ControlPolizas.db");
+
+            String query = "SELECT Nombre FROM Clientes WHERE strftime('%m',FechaNacimiento)='"+month+"' AND strftime('%d',FechaNacimiento)='"+day+"'";
+            //String pruebaQuery="Select * from Polizas";
+            //MessageBox.Show(query);
+            DataTable dataTable = new DataTable();
+            try
+            {
+
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
+                conexion.Open();
+
+                DataSet ds = new DataSet();
+                SQLiteDataAdapter adaptador = new SQLiteDataAdapter(query, conexion);
+
+                adaptador.Fill(dataTable);
+                adaptador.Fill(ds);
+                dgvCumpleaños.DataSource = ds.Tables[0].DefaultView;
+
+                conexion.Close();
+
+                //************************************************************************
+                }
+                    catch
+                    {
+                        MessageBox.Show("No se Pudo conectar la base de Datos");
+                    }
+
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -108,6 +142,7 @@ namespace ControlPolizas
             inicioSesion.ShowDialog();
             polizasPorVencer();
             recibosPorVencer();
+            cumpleañosDeHoy();
             
         }
 
@@ -241,6 +276,12 @@ namespace ControlPolizas
         {
             PolizasPorClientes polizaPorClientes = new PolizasPorClientes();
             polizaPorClientes.Show();
+        }
+
+        private void vigenciasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultarPolizasPorVigencia polizaPorVigencias = new ConsultarPolizasPorVigencia();
+            polizaPorVigencias.Show();
         }
     }
 }

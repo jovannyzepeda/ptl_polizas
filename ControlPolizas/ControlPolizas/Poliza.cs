@@ -421,6 +421,7 @@ namespace ControlPolizas
             if (dialogResult == DialogResult.Yes)
             {
                 eliminarPoliza(PK_Poliza);
+                sugerenciaNumeroPoliza();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -768,7 +769,7 @@ namespace ControlPolizas
 
 
 
-                    sugerenciaNumeroPoliza();
+                        sugerenciaNumeroPoliza();
                         sugerenciaClientes();
                         fillCmboxAgentes();
                         fillCmboxCompania();
@@ -776,6 +777,7 @@ namespace ControlPolizas
                         //LimpiarTextBox();
                         //ValoresBotonesDefault();
                         btnRevisarRecibos.Enabled = true;
+                        btnAgregar.Visible = false;
 
                     }
                     catch (Exception ev)
@@ -1161,7 +1163,7 @@ namespace ControlPolizas
                         break;
                 }
                 //MessageBox.Show("Entró pago"+primerMes);
-                generarRecibos(PK_Recibo, FK_Poliza, inicioVigenciaPoliza.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, primerMes,prima);
+                generarRecibos(PK_Recibo, FK_Poliza, inicioVigencia.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, primerMes,prima);
 
 
                 for (int i = 1; i <= frecuenciaPago - 1; i++)
@@ -1188,8 +1190,7 @@ namespace ControlPolizas
                             break;
                     }
 
-
-                    generarRecibos(PK_Recibo, FK_Poliza, inicioVigenciaPoliza.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, mensual, prima);
+                    generarRecibos(PK_Recibo, FK_Poliza, inicioVigencia.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, mensual, prima);
                     numRecib++;
                 }
 
@@ -1204,7 +1205,7 @@ namespace ControlPolizas
 
                 inicioVigencia = inicioVigenciaPoliza;
 
-                switch (frecuenciaPago)
+                switch (frecuenciaPago)  //GENERAR RECIBO DEL PRIMER MES
                 {
                     case 12:
                         prima = primaNeta / 12;
@@ -1224,9 +1225,9 @@ namespace ControlPolizas
                         break;
                 }
 
-                generarRecibos(PK_Recibo, FK_Poliza, inicioVigenciaPoliza.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, mensual, prima);
+                generarRecibos(PK_Recibo, FK_Poliza, inicioVigencia.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, mensual, prima);
 
-                if (frecuenciaPago != 3) {
+                if (frecuenciaPago != 3) {   //GENERAR DEMAS RECIBOS
 
                     for (int i = 1; i <= frecuenciaPago - 1; i++)
                     {
@@ -1237,6 +1238,7 @@ namespace ControlPolizas
                         {
                             case 12://mensual
                                 prima = primaNeta / 12;
+                                MessageBox.Show("Linea 1243"+inicioVigencia.ToString("yyyy-MM-dd"));
                                 inicioVigencia = inicioVigencia.AddMonths(1);
                                 finVigencia = inicioVigencia.AddMonths(1);
                                 break;
@@ -1253,7 +1255,7 @@ namespace ControlPolizas
 
                         }
 
-                    generarRecibos(PK_Recibo, FK_Poliza, inicioVigenciaPoliza.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, mensual, prima);
+                    generarRecibos(PK_Recibo, FK_Poliza, inicioVigencia.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, mensual, prima);
                     numRecib++;
                     }
             }

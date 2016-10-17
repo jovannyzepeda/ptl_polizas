@@ -23,3 +23,4 @@ C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\Con
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.Recibos.resources
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.ConsultaPrimasNuevas.resources
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.PolizasPorClientes.resources
+C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.ConsultarPolizasPorVigencia.resources

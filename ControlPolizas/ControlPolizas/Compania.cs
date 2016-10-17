@@ -49,7 +49,7 @@ namespace ControlPolizas
                 conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
 
                 conexion.Open();
-                command = new SQLiteCommand("Select NombreCompania From Compania", conexion);
+                command = new SQLiteCommand("Select NombreCompania From Companias", conexion);
                 lectorDatos = command.ExecuteReader();
                 while (lectorDatos.Read())
                 {
@@ -180,7 +180,7 @@ namespace ControlPolizas
                 conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
 
                 conexion.Open();
-                command = new SQLiteCommand("Select NombreCompania From Compania", conexion);
+                command = new SQLiteCommand("Select NombreCompania From Companias", conexion);
                 lectorDatos = command.ExecuteReader();
                 while (lectorDatos.Read())
                 {

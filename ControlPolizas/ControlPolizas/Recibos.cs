@@ -189,6 +189,7 @@ namespace ControlPolizas
 
         private void dgvRecibos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            try { 
                 DataGridViewRow row = dgvRecibos.Rows[e.RowIndex];
                 //MessageBox.Show("row=" + e.RowIndex);
                 txtNumeroPoliza.Text = row.Cells["NumeroPoliza"].Value.ToString();
@@ -199,12 +200,16 @@ namespace ControlPolizas
                 txtImporte.Text = row.Cells["Monto"].Value.ToString();
                 chkboxPagado.Checked = Convert.ToBoolean(row.Cells["Estado"].Value);
                 txtPrima.Text = row.Cells["Prima"].Value.ToString();
-
-            
+            }
+            catch
+            {
+                MessageBox.Show("Por favor elija una fila existente");
+            }
         }
 
         private void dgvRecibos_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            try { 
             DataGridViewRow row = dgvRecibos.Rows[e.RowIndex];
             //MessageBox.Show("row=" + e.RowIndex);
             txtNumeroPoliza.Text = row.Cells["NumeroPoliza"].Value.ToString();
@@ -215,20 +220,32 @@ namespace ControlPolizas
             txtImporte.Text = row.Cells["Monto"].Value.ToString();
             chkboxPagado.Checked = Convert.ToBoolean(row.Cells["Estado"].Value);
             txtPrima.Text = row.Cells["Prima"].Value.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Por favor elija una fila existente");
+            }
         }
 
         private void dgvRecibos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = dgvRecibos.Rows[e.RowIndex];
-            //MessageBox.Show("row=" + e.RowIndex);
-            txtNumeroPoliza.Text = row.Cells["NumeroPoliza"].Value.ToString();
-            dtpInicioVigencia.Value = DateTime.Parse(row.Cells["InicioVigencia"].Value.ToString());
-            dtpFinVigencia.Value = DateTime.Parse(row.Cells["FinVigencia"].Value.ToString());
-            dtpFechaPago.Value = DateTime.Parse(row.Cells["FechaPago"].Value.ToString());
-            txtNumeroRecibo.Text = row.Cells["N."].Value.ToString();
-            txtImporte.Text = row.Cells["Monto"].Value.ToString();
-            chkboxPagado.Checked = Convert.ToBoolean(row.Cells["Estado"].Value);
-            txtPrima.Text = row.Cells["Prima"].Value.ToString();
+            try
+            {
+                DataGridViewRow row = dgvRecibos.Rows[e.RowIndex];
+                //MessageBox.Show("row=" + e.RowIndex);
+                txtNumeroPoliza.Text = row.Cells["NumeroPoliza"].Value.ToString();
+                dtpInicioVigencia.Value = DateTime.Parse(row.Cells["InicioVigencia"].Value.ToString());
+                dtpFinVigencia.Value = DateTime.Parse(row.Cells["FinVigencia"].Value.ToString());
+                dtpFechaPago.Value = DateTime.Parse(row.Cells["FechaPago"].Value.ToString());
+                txtNumeroRecibo.Text = row.Cells["N."].Value.ToString();
+                txtImporte.Text = row.Cells["Monto"].Value.ToString();
+                chkboxPagado.Checked = Convert.ToBoolean(row.Cells["Estado"].Value);
+                txtPrima.Text = row.Cells["Prima"].Value.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Por favor elija una fila existente");
+            }
         }
 
         private void txtPrima_LocationChanged(object sender, EventArgs e)

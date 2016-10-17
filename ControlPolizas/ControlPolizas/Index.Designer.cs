@@ -43,6 +43,10 @@
             this.vigenciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnAgente = new System.Windows.Forms.Button();
+            this.btnPoliza = new System.Windows.Forms.Button();
+            this.BtnCliente = new System.Windows.Forms.Button();
             this.btnSalirIndex = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,10 +55,7 @@
             this.dgvPendientes = new System.Windows.Forms.DataGridView();
             this.dgvCumpleaños = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnAgente = new System.Windows.Forms.Button();
-            this.btnPoliza = new System.Windows.Forms.Button();
-            this.BtnCliente = new System.Windows.Forms.Button();
+            this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecibosPorVencer)).BeginInit();
@@ -122,7 +123,8 @@
             // consultarToolStripMenuItem
             // 
             this.consultarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.polizaToolStripMenuItem1});
+            this.polizaToolStripMenuItem1,
+            this.clientesToolStripMenuItem1});
             this.consultarToolStripMenuItem.Name = "consultarToolStripMenuItem";
             this.consultarToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.consultarToolStripMenuItem.Text = "Consultar";
@@ -164,6 +166,70 @@
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
             this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.acercaDeToolStripMenuItem.Text = "Acerca de...";
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button1.Image = global::ControlPolizas.Properties.Resources.people_1;
+            this.button1.Location = new System.Drawing.Point(26, 298);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(70, 70);
+            this.button1.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.button1, "Compañias");
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnAgente
+            // 
+            this.btnAgente.AutoSize = true;
+            this.btnAgente.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnAgente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAgente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAgente.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAgente.Image = global::ControlPolizas.Properties.Resources.businessman;
+            this.btnAgente.Location = new System.Drawing.Point(26, 205);
+            this.btnAgente.Name = "btnAgente";
+            this.btnAgente.Size = new System.Drawing.Size(70, 70);
+            this.btnAgente.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.btnAgente, "Agentes");
+            this.btnAgente.UseVisualStyleBackColor = false;
+            this.btnAgente.Click += new System.EventHandler(this.btnAgente_Click);
+            // 
+            // btnPoliza
+            // 
+            this.btnPoliza.AutoSize = true;
+            this.btnPoliza.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnPoliza.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPoliza.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPoliza.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnPoliza.Image = global::ControlPolizas.Properties.Resources.business;
+            this.btnPoliza.Location = new System.Drawing.Point(26, 114);
+            this.btnPoliza.Name = "btnPoliza";
+            this.btnPoliza.Size = new System.Drawing.Size(70, 70);
+            this.btnPoliza.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.btnPoliza, "Polizas");
+            this.btnPoliza.UseVisualStyleBackColor = false;
+            this.btnPoliza.Click += new System.EventHandler(this.btnPoliza_Click);
+            // 
+            // BtnCliente
+            // 
+            this.BtnCliente.AutoSize = true;
+            this.BtnCliente.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BtnCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnCliente.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.BtnCliente.Image = global::ControlPolizas.Properties.Resources.people1;
+            this.BtnCliente.Location = new System.Drawing.Point(26, 27);
+            this.BtnCliente.Name = "BtnCliente";
+            this.BtnCliente.Size = new System.Drawing.Size(70, 70);
+            this.BtnCliente.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.BtnCliente, "Clientes");
+            this.BtnCliente.UseVisualStyleBackColor = false;
+            this.BtnCliente.Click += new System.EventHandler(this.BtnCliente_Click);
             // 
             // btnSalirIndex
             // 
@@ -247,69 +313,12 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Cumpleaños de:";
             // 
-            // button1
+            // clientesToolStripMenuItem1
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Image = global::ControlPolizas.Properties.Resources.people_1;
-            this.button1.Location = new System.Drawing.Point(26, 298);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(70, 70);
-            this.button1.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.button1, "Compañias");
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnAgente
-            // 
-            this.btnAgente.AutoSize = true;
-            this.btnAgente.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnAgente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAgente.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAgente.Image = global::ControlPolizas.Properties.Resources.businessman;
-            this.btnAgente.Location = new System.Drawing.Point(26, 205);
-            this.btnAgente.Name = "btnAgente";
-            this.btnAgente.Size = new System.Drawing.Size(70, 70);
-            this.btnAgente.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.btnAgente, "Agentes");
-            this.btnAgente.UseVisualStyleBackColor = false;
-            this.btnAgente.Click += new System.EventHandler(this.btnAgente_Click);
-            // 
-            // btnPoliza
-            // 
-            this.btnPoliza.AutoSize = true;
-            this.btnPoliza.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnPoliza.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPoliza.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPoliza.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPoliza.Image = global::ControlPolizas.Properties.Resources.business;
-            this.btnPoliza.Location = new System.Drawing.Point(26, 114);
-            this.btnPoliza.Name = "btnPoliza";
-            this.btnPoliza.Size = new System.Drawing.Size(70, 70);
-            this.btnPoliza.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.btnPoliza, "Polizas");
-            this.btnPoliza.UseVisualStyleBackColor = false;
-            this.btnPoliza.Click += new System.EventHandler(this.btnPoliza_Click);
-            // 
-            // BtnCliente
-            // 
-            this.BtnCliente.AutoSize = true;
-            this.BtnCliente.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.BtnCliente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnCliente.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.BtnCliente.Image = global::ControlPolizas.Properties.Resources.people1;
-            this.BtnCliente.Location = new System.Drawing.Point(26, 27);
-            this.BtnCliente.Name = "BtnCliente";
-            this.BtnCliente.Size = new System.Drawing.Size(70, 70);
-            this.BtnCliente.TabIndex = 0;
-            this.toolTip1.SetToolTip(this.BtnCliente, "Clientes");
-            this.BtnCliente.UseVisualStyleBackColor = false;
-            this.BtnCliente.Click += new System.EventHandler(this.BtnCliente_Click);
+            this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
+            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.clientesToolStripMenuItem1.Text = "Clientes";
+            this.clientesToolStripMenuItem1.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
             // 
             // FrmIndex
             // 
@@ -370,6 +379,7 @@
         public System.Windows.Forms.DataGridView dgvRecibosPorVencer;
         public System.Windows.Forms.DataGridView dgvCumpleaños;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
     }
 }
 

@@ -485,6 +485,41 @@ namespace ControlPolizas
             return PK_Cliente;
         }
 
+
+        public bool buscarPolizaRepetida(String numeroPoliza, bool nueva, int FK_Cliente, int FK_TipoPoliza, int FK_Compania, String numeroRenovacion, int frecuenciaPago, String fechaInicio, String fechaFin, int FK_Agente, String version, float primaNeta, float recargoPagoFraccionado, float derechoPoliza, float IVA, float importeTotal, String adjunto)
+        {
+            bool existente=false;
+            int PK_Poliza = 0;
+            SQLiteCommand commandMax;
+            try
+            {
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
+                conexion.Open();
+
+                string queryMax = "SELECT PK_Poliza FROM Polizas WHERE NumeroPoliza='"+numeroPoliza+"' AND Nueva='"+nueva+"' AND FK_Cliente="+FK_Cliente+" and FK_TipoPoliza="+FK_TipoPoliza+" and FK_Compania="+FK_Compania+" and NumeroRenovacion='"+numeroRenovacion+"' and FrecuenciaDePago="+frecuenciaPago+" and InicioVigencia='"+fechaInicio+"' and FinVigencia='"+fechaFin+"' and FK_Agente="+FK_Agente+" and Version='"+version+"' and PrimaNeta="+primaNeta+" and RecargoPagoFraccionado="+recargoPagoFraccionado+" and DerechoPoliza="+derechoPoliza+" and IVA="+IVA+" and ImporteTotal="+importeTotal;
+                commandMax = new SQLiteCommand(queryMax, conexion);
+                string PK_TipoPolizaString = commandMax.ExecuteScalar().ToString();
+                PK_Poliza = Int32.Parse(PK_TipoPolizaString);
+                if (PK_Poliza != null)
+                {
+                    existente= true;//Si hay una igual
+                }
+                else
+                {
+                    existente = false;
+                }
+
+                conexion.Close();
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("No se encontró el tipo de póliza " + ev);
+            }
+
+            return existente;
+        }
+
+
         public int buscarFK_TipoPoliza(String TipoPoliza)
         {
             int PK_TipoPoliza = 0;
@@ -693,79 +728,86 @@ namespace ControlPolizas
                         version = txtVersion.Text;
                         adjunto = txtAdjunto.Text;
 
+                    bool existe=buscarPolizaRepetida(numeroPoliza, nueva, FK_Cliente, FK_TipoPoliza, FK_Compania, numeroRenovacion, frecuenciaPago, fechaInicio, fechaFin, FK_Agente, version, primaNeta, recargoPagoFraccionado, derechoPoliza, IVA, importeTotal, adjunto);
+                    if (existe == true)
+                    {
+                        MessageBox.Show("La poliza ya existe");
+                    }
+                    else
+                    {
                         insertarPoliza(PK_Poliza, numeroPoliza, nueva, FK_Cliente, FK_TipoPoliza, FK_Compania, numeroRenovacion, frecuenciaPago, fechaInicio, fechaFin, FK_Agente, version, primaNeta, recargoPagoFraccionado, derechoPoliza, IVA, importeTotal, adjunto);
 
-                    try
-                    {
-                        float iva;
-                        double monto,prima=0;
-                        DateTime inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia,fechaPago;
-                        int PK_Recibo;
-                        bool pagoFraccionado = false;
-
-                        primaNeta = float.Parse(txtPrima.Text);
-                        recargoPagoFraccionado = float.Parse(txtFraccionado.Text);
-                        derechoPoliza = float.Parse(txtDerechoPoliza.Text);
-                        iva = float.Parse(txtIVA.Text);
-                        importeTotal = float.Parse(txtImporte.Text);
-
-                        inicioVigencia = dtpInicioVigencia.Value;
-                        inicioVigenciaPoliza = dtpInicioVigencia.Value;
-                        finVigenciaPoliza = dtpFinVigencia.Value;
-                        finVigencia = dtpFinVigencia.Value;
-
-                       
-                        ///////////////////////////////////////////////////Generar Recibos//////////////////////////////////////////////// 
-                        PK_Recibo = ultimoRecibo();
-                        //PK_Poliza = ultimaPoliza();
-                        //MessageBox.Show("MAX RECIBO=" + PK_Recibo + "PKPOLIZA=" + PK_Poliza);
-
-                        //MessageBox.Show(cmbFrecuenciaPago.SelectedIndex.ToString());
-                        switch (cmbFrecuenciaPago.SelectedIndex)
+                        try
                         {
-                            case 0://Mensual
-                                prima = primaNeta / 12;
-                                frecuenciaPago = 12;
-                                pagoFraccionado = chkboxPagarPrimer.Checked;
-                                generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia,fechaPago=finVigencia,PK_Poliza);
-                                break;
-                            case 1://Trimestral
-                                prima = primaNeta / 4;
-                                frecuenciaPago = 4;
-                                pagoFraccionado = chkboxPagarPrimer.Checked;
-                                generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, fechaPago = finVigencia, PK_Poliza);
-                                break;
-                            case 2://Semestral
-                                prima = primaNeta / 2;
-                                frecuenciaPago = 2;
-                                pagoFraccionado = chkboxPagarPrimer.Checked;
-                                generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, fechaPago = finVigencia, PK_Poliza);
-                                break;
-                            case 3://Anual
-                                try
-                                {
-                                    prima = primaNeta;
-                                    generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, fechaPago = finVigencia, PK_Poliza);
-                                    //MessageBox.Show("Se ha creado 1 recibo "+frecuenciaPago.ToString());
-                                }
-                                catch (Exception ev)
-                                {
-                                    MessageBox.Show("Ocurrio un error" + ev);
-                                }
+                            float iva;
+                            double monto, prima = 0;
+                            DateTime inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, fechaPago;
+                            int PK_Recibo;
+                            bool pagoFraccionado = false;
 
-                                break;
+                            primaNeta = float.Parse(txtPrima.Text);
+                            recargoPagoFraccionado = float.Parse(txtFraccionado.Text);
+                            derechoPoliza = float.Parse(txtDerechoPoliza.Text);
+                            iva = float.Parse(txtIVA.Text);
+                            importeTotal = float.Parse(txtImporte.Text);
+
+                            inicioVigencia = dtpInicioVigencia.Value;
+                            inicioVigenciaPoliza = dtpInicioVigencia.Value;
+                            finVigenciaPoliza = dtpFinVigencia.Value;
+                            finVigencia = dtpFinVigencia.Value;
+
+
+                            ///////////////////////////////////////////////////Generar Recibos//////////////////////////////////////////////// 
+                            PK_Recibo = ultimoRecibo();
+                            //PK_Poliza = ultimaPoliza();
+                            //MessageBox.Show("MAX RECIBO=" + PK_Recibo + "PKPOLIZA=" + PK_Poliza);
+
+                            //MessageBox.Show(cmbFrecuenciaPago.SelectedIndex.ToString());
+                            switch (cmbFrecuenciaPago.SelectedIndex)
+                            {
+                                case 0://Mensual
+                                    prima = primaNeta / 12;
+                                    frecuenciaPago = 12;
+                                    pagoFraccionado = chkboxPagarPrimer.Checked;
+                                    generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, fechaPago = finVigencia, PK_Poliza);
+                                    break;
+                                case 1://Trimestral
+                                    prima = primaNeta / 4;
+                                    frecuenciaPago = 4;
+                                    pagoFraccionado = chkboxPagarPrimer.Checked;
+                                    generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, fechaPago = finVigencia, PK_Poliza);
+                                    break;
+                                case 2://Semestral
+                                    prima = primaNeta / 2;
+                                    frecuenciaPago = 2;
+                                    pagoFraccionado = chkboxPagarPrimer.Checked;
+                                    generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, fechaPago = finVigencia, PK_Poliza);
+                                    break;
+                                case 3://Anual
+                                    try
+                                    {
+                                        prima = primaNeta;
+                                        generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, fechaPago = finVigencia, PK_Poliza);
+                                        //MessageBox.Show("Se ha creado 1 recibo "+frecuenciaPago.ToString());
+                                    }
+                                    catch (Exception ev)
+                                    {
+                                        MessageBox.Show("Ocurrio un error" + ev);
+                                    }
+
+                                    break;
+                            }
+
+                            //btnRevisarRecibos.Enabled = true;
+                            //recibos.Show();
+
+                        }
+                        catch (Exception ev)
+                        {
+                            MessageBox.Show("Ocurrio un error al crear los recibos");
                         }
 
-                        //btnRevisarRecibos.Enabled = true;
-                        //recibos.Show();
-                         
-                    }
-                    catch (Exception ev)
-                    {
-                        MessageBox.Show("Ocurrio un error al crear los recibos");
-                    }
-
-                    ///////////////////////////////////////////////////Generar Recibos//////////////////////////////////////////////// 
+                        ///////////////////////////////////////////////////Generar Recibos//////////////////////////////////////////////// 
 
 
 
@@ -778,7 +820,7 @@ namespace ControlPolizas
                         //ValoresBotonesDefault();
                         btnRevisarRecibos.Enabled = true;
                         btnAgregar.Visible = false;
-
+                    }
                     }
                     catch (Exception ev)
                     {
@@ -1238,7 +1280,6 @@ namespace ControlPolizas
                         {
                             case 12://mensual
                                 prima = primaNeta / 12;
-                                MessageBox.Show("Linea 1243"+inicioVigencia.ToString("yyyy-MM-dd"));
                                 inicioVigencia = inicioVigencia.AddMonths(1);
                                 finVigencia = inicioVigencia.AddMonths(1);
                                 break;

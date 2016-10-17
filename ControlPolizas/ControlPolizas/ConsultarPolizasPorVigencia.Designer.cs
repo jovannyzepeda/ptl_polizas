@@ -32,10 +32,10 @@
             this.dgvRecibos = new System.Windows.Forms.DataGridView();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.dtpFechaVencimientoFin = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaVencimientoInicio = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecibos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +57,7 @@
             this.dgvRecibos.Name = "dgvRecibos";
             this.dgvRecibos.Size = new System.Drawing.Size(546, 275);
             this.dgvRecibos.TabIndex = 29;
+            this.dgvRecibos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibos_CellContentClick);
             // 
             // btnConsultar
             // 
@@ -81,6 +82,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rango de Vencimiento";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(180, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(14, 13);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Y";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Entre";
+            // 
             // dtpFechaVencimientoFin
             // 
             this.dtpFechaVencimientoFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -96,24 +115,6 @@
             this.dtpFechaVencimientoInicio.Name = "dtpFechaVencimientoInicio";
             this.dtpFechaVencimientoInicio.Size = new System.Drawing.Size(103, 20);
             this.dtpFechaVencimientoInicio.TabIndex = 12;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "Entre";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(180, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 13);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "Y";
             // 
             // ConsultarPolizasPorVigencia
             // 

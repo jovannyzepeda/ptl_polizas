@@ -142,5 +142,20 @@ namespace ControlPolizas
         {
             this.Dispose();
         }
+
+        private void txtNombreCliente_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int FK_Cliente;
+                FK_Cliente = buscarPK_Cliente(txtNombreCliente.Text);
+                actualizarDataGridWiewRecibos(FK_Cliente);
+
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Rectifique los datos");
+            }
+        }
     }
 }

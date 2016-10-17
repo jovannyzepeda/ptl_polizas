@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace ControlPolizas
 {
-    public partial class ConsultarPolizasPorVigencia : Form
+    public partial class ConsultaClientesExistentes : Form
     {
 
         DataSet ds;
         SQLiteDataAdapter adaptador;
         SQLiteConnection conexion;
 
-        public ConsultarPolizasPorVigencia()
+        public ConsultaClientesExistentes()
         {
             InitializeComponent();
         }
@@ -28,10 +28,10 @@ namespace ControlPolizas
             this.Dispose();
         }
 
-        public void actualizarDataGridWiewRecibos(DateTime vigenciaInicio, DateTime vigenciaFin)
+        public void actualizarDataGridWiewRecibos()
         {
 
-            String query = "Select p.NumeroPoliza as 'Numero de Poliza',p.Nueva as '¿Es nueva?',tp.TipoPoliza as 'Ramo', p.FinVigencia as 'Vigencia',co.NombreCompania as 'Compañía' FROM Clientes c, Polizas p, RecibosPoliza rp, TipoPolizas tp, Companias co WHERE p.FK_Cliente=c.PK_Cliente and p.FK_Compania=co.PK_Compania and p.FK_TipoPoliza=tp.PK_TipoPoliza and p.FinVigencia BETWEEN '"+vigenciaInicio.ToString("yyyy-MM-dd")+"' and '"+vigenciaFin.ToString("yyyy-MM-dd") + "' GROUP BY p.NumeroPoliza";
+            String query = "Select * FROM Clientes";
             //MessageBox.Show(query);
 
             // DataTable dataTable = new DataTable();
@@ -60,23 +60,12 @@ namespace ControlPolizas
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            try { 
-            DateTime inicioVigencia, finVigencia;
-
-            inicioVigencia = dtpFechaVencimientoInicio.Value;
-            finVigencia = dtpFechaVencimientoFin.Value;
-
-            actualizarDataGridWiewRecibos(inicioVigencia, finVigencia);
-            }
-            catch
-            {
-                MessageBox.Show("No se encontró registro");
-            }
+            
         }
 
-        private void dgvRecibos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ConsultaClientesExistentes_Load(object sender, EventArgs e)
         {
-
+            actualizarDataGridWiewRecibos();
         }
     }
 }

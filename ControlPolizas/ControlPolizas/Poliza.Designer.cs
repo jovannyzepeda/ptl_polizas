@@ -202,7 +202,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(303, 575);
+            this.btnAgregar.Location = new System.Drawing.Point(304, 575);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 13;
@@ -255,6 +255,7 @@
             this.cmbFrecuenciaPago.Size = new System.Drawing.Size(120, 21);
             this.cmbFrecuenciaPago.TabIndex = 6;
             this.cmbFrecuenciaPago.SelectedIndexChanged += new System.EventHandler(this.cmbFrecuenciaPago_SelectedIndexChanged);
+            this.cmbFrecuenciaPago.SelectedValueChanged += new System.EventHandler(this.cmbFrecuenciaPago_SelectedValueChanged);
             this.cmbFrecuenciaPago.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFrecuenciaPago_KeyPress);
             // 
             // label12
@@ -537,7 +538,7 @@
             this.btnRevisarRecibos.Name = "btnRevisarRecibos";
             this.btnRevisarRecibos.Size = new System.Drawing.Size(75, 36);
             this.btnRevisarRecibos.TabIndex = 14;
-            this.btnRevisarRecibos.Text = "Revisar Recibos";
+            this.btnRevisarRecibos.Text = "Revisar &Recibos";
             this.btnRevisarRecibos.UseVisualStyleBackColor = true;
             this.btnRevisarRecibos.Click += new System.EventHandler(this.btnRevisarRecibos_Click);
             // 

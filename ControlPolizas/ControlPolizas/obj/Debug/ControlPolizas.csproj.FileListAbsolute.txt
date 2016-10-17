@@ -12,7 +12,6 @@ C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\Con
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.csprojResolveAssemblyReference.cache
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.Agente.resources
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.Compania.resources
-C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.Direccion.resources
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.FrmIndex.resources
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.Cliente.resources
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.Inicio_Sesion.resources
@@ -22,3 +21,5 @@ C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\Con
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.exe
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.pdb
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.Recibos.resources
+C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.ConsultaPrimasNuevas.resources
+C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.PolizasPorClientes.resources

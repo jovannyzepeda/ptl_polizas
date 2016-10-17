@@ -43,7 +43,7 @@ namespace ControlPolizas
             try
             {
 
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
 
                 conexion.Open();
                 command = new SQLiteCommand("Select Nombre From Clientes", conexion);
@@ -72,7 +72,7 @@ namespace ControlPolizas
             try
             {
 
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
 
                 conexion.Open();
                 command = new SQLiteCommand("Select Nombre From Agentes", conexion);
@@ -100,7 +100,7 @@ namespace ControlPolizas
             try
             {
 
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
 
                 conexion.Open();
                 command = new SQLiteCommand("Select NombreCompania From Companias", conexion);
@@ -128,7 +128,7 @@ namespace ControlPolizas
             try
             {
 
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
 
                 conexion.Open();
                 command = new SQLiteCommand("Select NumeroPoliza From Polizas", conexion);
@@ -158,7 +158,7 @@ namespace ControlPolizas
                 String query = "SELECT p.PK_Poliza, p.NumeroPoliza,p.Nueva,c.Nombre,tp.TipoPoliza,co.NombreCompania, p.NumeroRenovacion,p.FrecuenciaDePago,p.InicioVigencia,p.FinVigencia,p.Adjunto,a.Nombre,p.Version,p.PrimaNeta,p.RecargoPagoFraccionado,p.DerechoPoliza,p.IVA,p.ImporteTotal FROM Polizas p, TipoPolizas tp, Clientes c, Agentes a,Companias co  WHERE p.NumeroPoliza='" + numeroPoliza + "' and tp.PK_TipoPoliza=p.FK_TipoPoliza and p.FK_Cliente=c.PK_Cliente and co.PK_Compania=p.FK_Compania and a.PK_Agente=p.FK_Agente AND p.InicioVigencia='" + fechaInicio + "' AND FinVigencia='" + fechaFin + "'";
 
                 //Console.WriteLine(query);
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
                 command = new SQLiteCommand(query, conexion);
                 lectorDatos = command.ExecuteReader();
@@ -298,7 +298,7 @@ namespace ControlPolizas
             SQLiteCommand commandMax;
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
                 string queryMax = "SELECT count(PK_RecibosPoliza) FROM RecibosPoliza WHERE FK_Poliza="+PK_Poliza+" AND InicioVigencia BETWEEN '"+ inicioVigencia.ToString("yyyy-MM-dd") + "' AND '"+inicioVigencia.AddYears(1).ToString("yyyy-MM-dd") + "'";
                 //MessageBox.Show(queryMax);
@@ -345,6 +345,7 @@ namespace ControlPolizas
             btnCancelar.Enabled = true;
             btnBusca.Enabled = true;
             btnRevisarRecibos.Enabled = false;
+            chkboxPagarPrimer.Enabled = true;
             
         }
         public void LimpiarTextBox()
@@ -388,11 +389,11 @@ namespace ControlPolizas
 
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
                 query = "DELETE FROM Polizas WHERE PK_Poliza=" + PK_Poliza;
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 using (SQLiteCommand cmd = new SQLiteCommand(query, conexion))
                 {
                     cmd.ExecuteNonQuery();
@@ -434,7 +435,7 @@ namespace ControlPolizas
             SQLiteCommand commandMax;
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
                 string queryMax = "SELECT max(PK_Poliza) FROM Polizas";
                 commandMax = new SQLiteCommand(queryMax, conexion);
@@ -465,7 +466,7 @@ namespace ControlPolizas
             SQLiteCommand commandMax;
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
                 string queryMax = "SELECT PK_Cliente FROM Clientes WHERE Nombre='"+NombreCliente+"'";
@@ -489,7 +490,7 @@ namespace ControlPolizas
             SQLiteCommand commandMax;
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
                 string queryMax = "SELECT PK_TipoPoliza FROM TipoPolizas WHERE TipoPoliza='" + TipoPoliza + "'";
@@ -515,7 +516,7 @@ namespace ControlPolizas
             SQLiteCommand commandMax;
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
                 string queryMax = "SELECT PK_Compania FROM Companias WHERE NombreCompania='" + NombreCompania + "'";
@@ -565,7 +566,7 @@ namespace ControlPolizas
             SQLiteCommand commandMax;
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
                 string queryMax = "SELECT PK_Agente FROM Agentes WHERE Nombre='" + Nombre + "'";
@@ -590,7 +591,7 @@ namespace ControlPolizas
 
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
                 
                 query = "INSERT INTO Polizas VALUES("+PK_Poliza + ",'"+numeroPoliza + "','"+nueva + "',"+FK_Cliente + ","+FK_TipoPoliza + ","+FK_Compania + ",'"+numeroRenovacion + "',"+frecuenciaPago + ",'"+fechaInicio + "','"+fechaFin + "','"+adjunto+ "'," +FK_Agente + ",'"+version + "',"+primaNeta + ","+recargoPagoFraccionado + ","+derechoPoliza + ","+IVA + ","+importeTotal+")";
@@ -618,11 +619,11 @@ namespace ControlPolizas
 
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
                 query ="UPDATE Polizas set NumeroPoliza='" + numeroPoliza + "',Nueva='" + nueva + "',FK_Cliente=" + FK_Cliente + ",FK_TipoPoliza=" + FK_TipoPoliza + ",FK_Compania=" + FK_Compania + ",numeroRenovacion='" + numeroRenovacion + "',FrecuenciaDePago=" + frecuenciaPago + ",InicioVigencia='" + fechaInicio + "',FinVigencia='" + fechaFin + "',Adjunto='" + adjunto + "',FK_Agente=" + FK_Agente + ",Version='" + version + "',PrimaNeta=" + primaNeta + ",RecargoPagoFraccionado=" + recargoPagoFraccionado + ",DerechoPoliza=" + derechoPoliza + ",IVA=" + IVA + ",ImporteTotal=" + importeTotal + " WHERE NumeroPoliza='"+numeroPoliza+"' AND InicioVigencia='"+fechaInicio + "' AND FinVigencia='" + fechaFin + "'";
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 commandoInsert = new SQLiteCommand(query, conexion);
                 commandoInsert.ExecuteNonQuery();
                 MessageBox.Show("Póliza Actualizada");
@@ -696,8 +697,8 @@ namespace ControlPolizas
                     try
                     {
                         float iva;
-                        double monto;
-                        DateTime inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia;
+                        double monto,prima=0;
+                        DateTime inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia,fechaPago;
                         int PK_Recibo;
                         bool pagoFraccionado = false;
 
@@ -718,28 +719,33 @@ namespace ControlPolizas
                         //PK_Poliza = ultimaPoliza();
                         //MessageBox.Show("MAX RECIBO=" + PK_Recibo + "PKPOLIZA=" + PK_Poliza);
 
+                        //MessageBox.Show(cmbFrecuenciaPago.SelectedIndex.ToString());
                         switch (cmbFrecuenciaPago.SelectedIndex)
                         {
                             case 0://Mensual
+                                prima = primaNeta / 12;
                                 frecuenciaPago = 12;
                                 pagoFraccionado = chkboxPagarPrimer.Checked;
-                                generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, PK_Poliza);
+                                generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia,fechaPago=finVigencia,PK_Poliza);
                                 break;
                             case 1://Trimestral
+                                prima = primaNeta / 4;
                                 frecuenciaPago = 4;
                                 pagoFraccionado = chkboxPagarPrimer.Checked;
-                                generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, PK_Poliza);
+                                generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, fechaPago = finVigencia, PK_Poliza);
                                 break;
                             case 2://Semestral
+                                prima = primaNeta / 2;
                                 frecuenciaPago = 2;
                                 pagoFraccionado = chkboxPagarPrimer.Checked;
-                                generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, PK_Poliza);
+                                generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, fechaPago = finVigencia, PK_Poliza);
                                 break;
                             case 3://Anual
                                 try
                                 {
-                                    generarRecibos(PK_Recibo, PK_Poliza, inicioVigencia.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), false, monto = double.Parse(txtImporte.Text));
-                                    MessageBox.Show("Se ha creado 1 recibo");
+                                    prima = primaNeta;
+                                    generarRecibosBaseDatos(pagoFraccionado, frecuenciaPago, PK_Recibo, primaNeta, recargoPagoFraccionado, derechoPoliza, iva, importeTotal, inicioVigenciaPoliza, inicioVigencia, finVigenciaPoliza, finVigencia, fechaPago = finVigencia, PK_Poliza);
+                                    //MessageBox.Show("Se ha creado 1 recibo "+frecuenciaPago.ToString());
                                 }
                                 catch (Exception ev)
                                 {
@@ -748,9 +754,10 @@ namespace ControlPolizas
 
                                 break;
                         }
-                       
+
                         //btnRevisarRecibos.Enabled = true;
                         //recibos.Show();
+                         
                     }
                     catch (Exception ev)
                     {
@@ -1051,7 +1058,7 @@ namespace ControlPolizas
 
         private void cmbFrecuenciaPago_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void chkboxNueva_CheckedChanged(object sender, EventArgs e)
@@ -1066,18 +1073,18 @@ namespace ControlPolizas
             }
         }
 
-        public void generarRecibos(int PK_Recibo,int FK_Poliza,String inicioVigencia, String finVigencia, bool estado, double monto)
+        public void generarRecibos(int PK_Recibo,int FK_Poliza,String inicioVigencia, String finVigencia,String fechaPago, bool estado, double monto,double prima)
         {
             SQLiteCommand commandoInsert;
-            
+            fechaPago = finVigencia;
             string query;
             try
             {
 
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
-                query = "INSERT INTO RecibosPoliza VALUES(" + PK_Recibo + "," + FK_Poliza + ",'" + inicioVigencia + "','" + finVigencia +"','"+ estado + "'," + monto + ")";
+                query = "INSERT INTO RecibosPoliza VALUES(" + PK_Recibo + "," + FK_Poliza + ",'" + inicioVigencia + "','" + finVigencia +"','"+ estado + "'," + monto + ","+prima + ",'" +fechaPago+ "')";
                 //MessageBox.Show(query + " linea 979");
                 commandoInsert = new SQLiteCommand(query, conexion);
                 commandoInsert.ExecuteNonQuery();
@@ -1098,7 +1105,7 @@ namespace ControlPolizas
             SQLiteCommand commandMax;
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
                 string queryMax = "SELECT max(PK_RecibosPoliza) FROM RecibosPoliza";
                 commandMax = new SQLiteCommand(queryMax, conexion);
@@ -1123,61 +1130,69 @@ namespace ControlPolizas
         }
 
 
-        public void generarRecibosBaseDatos(bool pagoFraccionado,int frecuenciaPago, int PK_Recibo, float primaNeta, float recargoPagoFraccionado, float derechoPoliza, float iva, float importeTotal, DateTime inicioVigenciaPoliza, DateTime inicioVigencia, DateTime finVigenciaPoliza, DateTime finVigencia,int FK_Poliza)
+        public void generarRecibosBaseDatos(bool pagoFraccionado,int frecuenciaPago, int PK_Recibo, float primaNeta, float recargoPagoFraccionado, float derechoPoliza, float iva, float importeTotal, DateTime inicioVigenciaPoliza, DateTime inicioVigencia, DateTime finVigenciaPoliza, DateTime finVigencia,DateTime fechaPago,int FK_Poliza)
         {
-            double mensual,primerMes;
+            double mensual,primerMes,prima=0;
 
             if (pagoFraccionado)//se paga primer mes derecho de poliza
             {
+                //double prima = 0;
+                
                 int numRecib = 1;
                 mensual = ((primaNeta + recargoPagoFraccionado) * 1.16) / frecuenciaPago; //calculo de 1 mes
                 primerMes = (derechoPoliza * 1.16) + mensual; //suma el derecho de poliza al primer mes
 
-                
+
 
                 inicioVigencia = inicioVigenciaPoliza;
                 switch (frecuenciaPago)
                 {
                     case 12:
+                        prima = primaNeta / 12;
                         finVigencia = inicioVigencia.AddMonths(1);
                         break;
                     case 4:
+                        prima = primaNeta / 4;
                         finVigencia = inicioVigencia.AddMonths(3);
                         break;
                     case 2:
+                        prima = primaNeta / 2;
                         finVigencia = inicioVigencia.AddMonths(6);
                         break;
                 }
-
-                generarRecibos(PK_Recibo, FK_Poliza, inicioVigenciaPoliza.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), false, primerMes);
+                //MessageBox.Show("Entró pago"+primerMes);
+                generarRecibos(PK_Recibo, FK_Poliza, inicioVigenciaPoliza.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, primerMes,prima);
 
 
                 for (int i = 1; i <= frecuenciaPago - 1; i++)
                 {
                     PK_Recibo = PK_Recibo + 1;
-                    MessageBox.Show(frecuenciaPago.ToString());
+                    //MessageBox.Show(frecuenciaPago.ToString());
 
                     switch (frecuenciaPago)
                     {
                         case 12://mensual
+                            prima = primaNeta / 12;
                             inicioVigencia = inicioVigencia.AddMonths(1);
                             finVigencia = inicioVigencia.AddMonths(1);
                             break;
                         case 4://trimestral
+                            prima = primaNeta / 4;
                             inicioVigencia = inicioVigencia.AddMonths(3);
                             finVigencia = inicioVigencia.AddMonths(3);
                             break;
                         case 2://semestral
+                            prima = primaNeta / 2;
                             inicioVigencia = inicioVigencia.AddMonths(6);
                             finVigencia = finVigencia.AddMonths(6);
                             break;
                     }
 
 
-                    generarRecibos(PK_Recibo, FK_Poliza, inicioVigencia.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), false, mensual);
+                    generarRecibos(PK_Recibo, FK_Poliza, inicioVigenciaPoliza.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, mensual, prima);
                     numRecib++;
                 }
-               
+
                 txtNumeroRecibos.Text = numRecib.ToString();
                 MessageBox.Show("Se han creado " + numRecib.ToString() + " recibos");
             }
@@ -1186,47 +1201,62 @@ namespace ControlPolizas
                 int numRecib = 1;
                 mensual = importeTotal / frecuenciaPago;
 
-                
+
                 inicioVigencia = inicioVigenciaPoliza;
+
                 switch (frecuenciaPago)
                 {
                     case 12:
+                        prima = primaNeta / 12;
                         finVigencia = inicioVigencia.AddMonths(1);
                         break;
                     case 4:
+                        prima = primaNeta / 4;
                         finVigencia = inicioVigencia.AddMonths(3);
                         break;
                     case 2:
+                        prima = primaNeta / 2;
                         finVigencia = inicioVigencia.AddMonths(6);
                         break;
+                    case 3:
+                        prima = primaNeta;
+                        mensual = importeTotal;
+                        break;
                 }
-                
-                generarRecibos(PK_Recibo, FK_Poliza, inicioVigencia.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), false, mensual);
-                for (int i = 1; i <= frecuenciaPago-1; i++)
-                {
-                    PK_Recibo = PK_Recibo + 1;
-                    MessageBox.Show(frecuenciaPago.ToString());
-                    
-                    switch (frecuenciaPago)
-                    {
-                        case 12://mensual
-                            inicioVigencia = inicioVigencia.AddMonths(1);
-                            finVigencia = inicioVigencia.AddMonths(1);
-                            break;
-                        case 4://trimestral
-                            inicioVigencia = inicioVigencia.AddMonths(3);
-                            finVigencia = inicioVigencia.AddMonths(3);
-                            break;
-                        case 2://semestral
-                            inicioVigencia = inicioVigencia.AddMonths(6);
-                            finVigencia = finVigencia.AddMonths(6);
-                            break;
-                    }
 
-                    
-                    generarRecibos(PK_Recibo, FK_Poliza, inicioVigencia.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), false, mensual);
+                generarRecibos(PK_Recibo, FK_Poliza, inicioVigenciaPoliza.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, mensual, prima);
+
+                if (frecuenciaPago != 3) {
+
+                    for (int i = 1; i <= frecuenciaPago - 1; i++)
+                    {
+                    PK_Recibo = PK_Recibo + 1;
+                    // MessageBox.Show(frecuenciaPago.ToString());
+
+                        switch (frecuenciaPago)
+                        {
+                            case 12://mensual
+                                prima = primaNeta / 12;
+                                inicioVigencia = inicioVigencia.AddMonths(1);
+                                finVigencia = inicioVigencia.AddMonths(1);
+                                break;
+                            case 4://trimestral
+                                prima = primaNeta / 4;
+                                inicioVigencia = inicioVigencia.AddMonths(3);
+                                finVigencia = inicioVigencia.AddMonths(3);
+                                break;
+                            case 2://semestral
+                                prima = primaNeta / 2;
+                                inicioVigencia = inicioVigencia.AddMonths(6);
+                                finVigencia = finVigencia.AddMonths(6);
+                                break;
+
+                        }
+
+                    generarRecibos(PK_Recibo, FK_Poliza, inicioVigenciaPoliza.ToString("yyyy-MM-dd"), finVigencia.ToString("yyyy-MM-dd"), fechaPago.ToString("yyyy-MM-dd"), false, mensual, prima);
                     numRecib++;
-                }
+                    }
+            }
 
                 txtNumeroRecibos.Text = numRecib.ToString();
                 MessageBox.Show("Se han creado " + numRecib.ToString() + " recibos");
@@ -1253,6 +1283,18 @@ namespace ControlPolizas
             recibos.setPK_Poliza(PK_Poliza);
             recibos.setInicioVigenciaPoliza(inicioVigencia);
             recibos.Show();
+        }
+
+        private void cmbFrecuenciaPago_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmbFrecuenciaPago.SelectedIndex == 3)
+            {
+                chkboxPagarPrimer.Enabled = false;
+            }
+            else
+            {
+                chkboxPagarPrimer.Enabled = true;
+            }
         }
     }
 }

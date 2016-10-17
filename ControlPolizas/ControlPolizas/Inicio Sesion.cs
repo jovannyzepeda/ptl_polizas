@@ -27,7 +27,7 @@ namespace ControlPolizas
 
         private void Inicio_Sesion_Load(object sender, EventArgs e)
         {
-            conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+            conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
             conexion.Open();
 
             MessageBox.Show("Bienvenido");
@@ -57,7 +57,7 @@ namespace ControlPolizas
             String ContraseniaIngresada=txtContrasenia.Text;
             String ContraseniaBD="";
 
-            conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+            conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
             conexion.Open();
 
             DataTable datosTabla = new DataTable();

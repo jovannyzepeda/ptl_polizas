@@ -13,7 +13,7 @@ namespace ControlPolizas
 {
     public partial class Cliente : Form
     {
-        Direccion direccion;
+        //Direccion direccion;
         SQLiteConnection conexion;
         int PK_Cliente = 0;
         public void valoreDefaultBotones()
@@ -52,7 +52,7 @@ namespace ControlPolizas
         {
             sugerenciaClientes();
 
-            direccion = new Direccion();
+            //direccion = new Direccion();
             //limpiarComboBox();
             limpiarTextBox();
             valoreDefaultBotones();
@@ -62,7 +62,7 @@ namespace ControlPolizas
         {
               
             this.Hide();
-            direccion.Dispose();
+            //direccion.Dispose();
             
         }
 
@@ -74,7 +74,7 @@ namespace ControlPolizas
             try
             {
 
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
 
                 conexion.Open();
                 command = new SQLiteCommand("Select Nombre From Clientes", conexion);
@@ -132,8 +132,8 @@ namespace ControlPolizas
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            direccion.getCliente(txtNombreCliente.Text);
-            direccion.ShowDialog();
+            //direccion.getCliente(txtNombreCliente.Text);
+            //direccion.ShowDialog();
 
         }
 
@@ -177,7 +177,7 @@ namespace ControlPolizas
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Dispose();
-            direccion.Dispose();
+            //direccion.Dispose();
         }
 
         private void button1_Click_2(object sender, EventArgs e)
@@ -195,7 +195,7 @@ namespace ControlPolizas
 
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
                 query = "DELETE FROM Clientes WHERE PK_Cliente=" + PK_Cliente;
@@ -253,9 +253,9 @@ namespace ControlPolizas
 
             try
             {
-               
+
                 //PK_Cliente = ultimoCliente();
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
                 //MessageBox.Show("Cliente nuevo Agregado " + PK_Cliente);
                 //query = "INSERT INTO Clientes VALUES(" + PK_Cliente + ",'" + nombre + "','" + RFC + "','" + fechaNacimiento + "','" + telefono + "','" + correoElectronico + "')";
@@ -282,7 +282,7 @@ namespace ControlPolizas
             SQLiteCommand commandMax;
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
                 string queryMax = "SELECT max(PK_Cliente) FROM Clientes";
                 commandMax = new SQLiteCommand(queryMax, conexion);
@@ -313,7 +313,7 @@ namespace ControlPolizas
             {
 
 
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
                 command = new SQLiteCommand(query,conexion);
                 lectorDatos = command.ExecuteReader();
@@ -347,7 +347,7 @@ namespace ControlPolizas
             {
 
                 PK_DireccionCliente = ultimaDireccion();
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
                 //MessageBox.Show("Cliente nuevo Agregado " + PK_Cliente);
                 //query = "INSERT INTO Clientes VALUES(" + PK_Cliente + ",'" + nombre + "','" + RFC + "','" + fechaNacimiento + "','" + telefono + "','" + correoElectronico + "')";
@@ -374,7 +374,7 @@ namespace ControlPolizas
             SQLiteCommand commandMax;
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
                 string queryMax = "SELECT max(PK_DireccionCliente) FROM DireccionClientes";
                 commandMax = new SQLiteCommand(queryMax, conexion);
@@ -405,7 +405,7 @@ namespace ControlPolizas
             {
 
 
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
                 command = new SQLiteCommand(query, conexion);
                 lectorDatos = command.ExecuteReader();
@@ -436,7 +436,7 @@ namespace ControlPolizas
 
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
                 query = "UPDATE Clientes set Nombre='" + nombre + "',RFC='" + rfc + "',FechaNacimiento='" + fechaNacimiento + "',Telefono='" + telefono + "',CorreoElectronico='" + correo + "' WHERE PK_Cliente="+PK_Cliente;
@@ -463,7 +463,7 @@ namespace ControlPolizas
 
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
                 query = "UPDATE DireccionClientes set Calle='" + calle + "',NumeroInterior='" + numeroInterior + "',Colonia='" + colonia+ "',Estado='" + estado + "',Municipio='" + municipio+ "',CodigoPostal='"+codigoPostal+"' WHERE FK_Cliente="+FK_Cliente+" AND PK_DireccionCliente="+PK_Direccion;
@@ -488,7 +488,7 @@ namespace ControlPolizas
             SQLiteCommand commandMax;
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
                 string queryMax = "SELECT PK_Cliente FROM Clientes WHERE Nombre='" + NombreCliente + "'";
@@ -512,7 +512,7 @@ namespace ControlPolizas
             SQLiteCommand commandMax;
             try
             {
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
                 string queryMax = "SELECT PK_DireccionCliente FROM DireccionClientes WHERE FK_Cliente=" + FK_Cliente;

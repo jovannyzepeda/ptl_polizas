@@ -30,11 +30,12 @@ namespace ControlPolizas
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+
+        public void polizasPorVencer()
         {
             String fecha1 = thisDay.AddDays(28).ToString("yyyy-MM-dd");
-            String fecha2= thisDay.AddDays(33).ToString("yyyy-MM-dd");
-            //MessageBox.Show(fecha1+" "+fecha2);
+            String fecha2 = thisDay.AddDays(33).ToString("yyyy-MM-dd");
+            //MessageBox.Show("path "+System.IO.Directory.GetCurrentDirectory()+"\\ControlPolizas.db");
 
             String query = "SELECT c.Nombre AS 'Nombre', p.NumeroPoliza as 'Numero de poliza', tp.TipoPoliza as 'Ramo', p.FinVigencia as 'Vigencia', p.ImporteTotal as 'Importe total' from Clientes c,Polizas p, TipoPolizas tp where c.PK_Cliente=p.FK_Cliente and tp.PK_TipoPoliza=p.FK_TipoPoliza AND p.FinVigencia BETWEEN '" + fecha1 + "' AND '" + fecha2 + "'";
             //String pruebaQuery="Select * from Polizas";
@@ -43,10 +44,10 @@ namespace ControlPolizas
             try
             {
 
-                conexion = new SQLiteConnection("Data Source=C:\\Users\\Nacho Martinez\\Desktop\\Zerebro\\Control Polizas\\BaseDatos\\ControlPolizas.db;Version=3");
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
 
-                 DataSet ds = new DataSet();
+                DataSet ds = new DataSet();
                 SQLiteDataAdapter adaptador = new SQLiteDataAdapter(query, conexion);
 
                 adaptador.Fill(dataTable);
@@ -57,13 +58,56 @@ namespace ControlPolizas
 
                 //************************************************************************
 
-                inicioSesion = new Inicio_Sesion();
-                inicioSesion.ShowDialog();
             }
             catch
             {
                 MessageBox.Show("No se Pudo conectar la base de Datos");
             }
+        }
+
+
+        public void recibosPorVencer()
+        {
+            String fecha1 = thisDay.AddDays(3).ToString("yyyy-MM-dd");
+            String fecha2 = thisDay.AddDays(7).ToString("yyyy-MM-dd");
+            //MessageBox.Show("path "+System.IO.Directory.GetCurrentDirectory()+"\\ControlPolizas.db");
+
+            String query = "SELECT p.NumeroPoliza,c.Nombre,rp.InicioVigencia,rp.FinVigencia,rp.Monto FROM Clientes c, Polizas p, RecibosPoliza rp, TipoPolizas tp, Companias co WHERE p.FK_Cliente=c.PK_Cliente and p.FK_Compania=co.PK_Compania and p.FK_TipoPoliza=tp.PK_TipoPoliza AND rp.FK_Poliza=p.PK_Poliza  AND rp.FinVigencia BETWEEN '"+fecha1+"' AND '"+fecha2+"'";
+            //String pruebaQuery="Select * from Polizas";
+            MessageBox.Show(query);
+            DataTable dataTable = new DataTable();
+            try
+            {
+
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
+                conexion.Open();
+
+                DataSet ds = new DataSet();
+                SQLiteDataAdapter adaptador = new SQLiteDataAdapter(query, conexion);
+
+                adaptador.Fill(dataTable);
+                adaptador.Fill(ds);
+                dgvRecibosPorVencer.DataSource = ds.Tables[0].DefaultView;
+
+                conexion.Close();
+
+                //************************************************************************
+
+                
+            }
+            catch
+            {
+                MessageBox.Show("No se Pudo conectar la base de Datos");
+            }
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            inicioSesion = new Inicio_Sesion();
+            inicioSesion.ShowDialog();
+            polizasPorVencer();
+            recibosPorVencer();
             
         }
 
@@ -187,6 +231,16 @@ namespace ControlPolizas
             
         }
 
-      
+        private void primasNuevasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaPrimasNuevas primasNuevas = new ConsultaPrimasNuevas();
+            primasNuevas.Show();
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PolizasPorClientes polizaPorClientes = new PolizasPorClientes();
+            polizaPorClientes.Show();
+        }
     }
 }

@@ -113,6 +113,7 @@
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(288, 20);
             this.txtNombreCliente.TabIndex = 0;
+            this.txtNombreCliente.TextChanged += new System.EventHandler(this.txtNombreCliente_TextChanged);
             // 
             // txtRFC
             // 
@@ -120,6 +121,7 @@
             this.txtRFC.Name = "txtRFC";
             this.txtRFC.Size = new System.Drawing.Size(220, 20);
             this.txtRFC.TabIndex = 1;
+            this.txtRFC.TextChanged += new System.EventHandler(this.txtRFC_TextChanged);
             // 
             // Cumpleaños
             // 
@@ -157,6 +159,7 @@
             this.txtTelefono.Size = new System.Drawing.Size(220, 20);
             this.txtTelefono.TabIndex = 2;
             this.txtTelefono.UseWaitCursor = true;
+            this.txtTelefono.TextChanged += new System.EventHandler(this.txtTelefono_TextChanged);
             // 
             // label7
             // 
@@ -235,6 +238,7 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dirección";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label6
             // 
@@ -297,6 +301,8 @@
             this.txtCodigoPotalDireccion.Name = "txtCodigoPotalDireccion";
             this.txtCodigoPotalDireccion.Size = new System.Drawing.Size(131, 20);
             this.txtCodigoPotalDireccion.TabIndex = 5;
+            this.txtCodigoPotalDireccion.TextChanged += new System.EventHandler(this.txtCodigoPotalDireccion_TextChanged);
+            this.txtCodigoPotalDireccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoPotalDireccion_KeyPress);
             // 
             // txtEstadoDireccion
             // 
@@ -304,6 +310,7 @@
             this.txtEstadoDireccion.Name = "txtEstadoDireccion";
             this.txtEstadoDireccion.Size = new System.Drawing.Size(131, 20);
             this.txtEstadoDireccion.TabIndex = 4;
+            this.txtEstadoDireccion.TextChanged += new System.EventHandler(this.txtEstadoDireccion_TextChanged);
             // 
             // txtColoniaDireccion
             // 
@@ -311,6 +318,7 @@
             this.txtColoniaDireccion.Name = "txtColoniaDireccion";
             this.txtColoniaDireccion.Size = new System.Drawing.Size(138, 20);
             this.txtColoniaDireccion.TabIndex = 2;
+            this.txtColoniaDireccion.TextChanged += new System.EventHandler(this.txtColoniaDireccion_TextChanged);
             // 
             // txtMuniciopioDireccion
             // 
@@ -326,6 +334,7 @@
             this.txtNumeroCalle.Name = "txtNumeroCalle";
             this.txtNumeroCalle.Size = new System.Drawing.Size(68, 20);
             this.txtNumeroCalle.TabIndex = 1;
+            this.txtNumeroCalle.TextChanged += new System.EventHandler(this.txtNumeroCalle_TextChanged);
             // 
             // txtCalleDireccion
             // 
@@ -333,6 +342,7 @@
             this.txtCalleDireccion.Name = "txtCalleDireccion";
             this.txtCalleDireccion.Size = new System.Drawing.Size(201, 20);
             this.txtCalleDireccion.TabIndex = 0;
+            this.txtCalleDireccion.TextChanged += new System.EventHandler(this.txtCalleDireccion_TextChanged);
             // 
             // btnModificar
             // 

@@ -14,11 +14,12 @@ namespace ControlPolizas
     public partial class Poliza : Form
     {
         SQLiteConnection conexion;
-        float IMPORTETOTAL = 0;
+        double IMPORTETOTAL = 0;
         public DateTime inicioVigenciaExportar;
-       public int PK_Poliza;
+        public int PK_Poliza;
+        public float prima = 0, fraccionado = 0, derechoPoliza = 0, iva = 0;
 
-       public Recibos recibos;
+        public Recibos recibos;
 
         public Poliza()
         {
@@ -124,7 +125,7 @@ namespace ControlPolizas
         {
             SQLiteCommand command;
             SQLiteDataReader lectorDatos;
-
+            txtNumeroPoliza.AutoCompleteCustomSource.Clear();
             try
             {
 
@@ -363,6 +364,13 @@ namespace ControlPolizas
             IMPORTETOTAL = 0;
             chkboxNueva.Checked = true;
             txtNumeroRecibos.Text = "";
+            prima = 0;
+            fraccionado = 0;
+            derechoPoliza = 0;
+            iva = 0;
+
+
+            
         }
 
         public void limpiarComboBox()
@@ -513,7 +521,7 @@ namespace ControlPolizas
             }
             catch (Exception ev)
             {
-                MessageBox.Show("No se encontró el tipo de póliza " + ev);
+                //MessageBox.Show("No se encontró el tipo de póliza " + ev);
             }
 
             return existente;
@@ -813,8 +821,8 @@ namespace ControlPolizas
 
                         sugerenciaNumeroPoliza();
                         sugerenciaClientes();
-                        fillCmboxAgentes();
-                        fillCmboxCompania();
+                        //fillCmboxAgentes();
+                        //fillCmboxCompania();
                         //limpiarComboBox();
                         //LimpiarTextBox();
                         //ValoresBotonesDefault();
@@ -838,12 +846,47 @@ namespace ControlPolizas
 
         private void txtIVA_TextChanged(object sender, EventArgs e)
         {
+            if (txtIVA.Equals(""))
+            {
 
+            }
+            else
+            {
+                try
+                {
+                    iva = float.Parse(txtIVA.Text);
+
+                    sumarImporte();
+                }
+                catch
+                {
+
+                }
+                }
+            
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void txtDerechoPolizaChanged(object sender, EventArgs e)
         {
+            if (txtDerechoPoliza.Equals(""))
+            {
 
+            }
+            else
+            {
+                try
+                {
+                        derechoPoliza = float.Parse(txtDerechoPoliza.Text);
+
+                         sumarImporte();
+                }
+                catch
+                {
+
+                }
+                    
+            }
+            
         }
 
         private void label16_Click(object sender, EventArgs e)
@@ -868,27 +911,8 @@ namespace ControlPolizas
 
         private void txtIVA_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //float primaNeta,RecargoPagoFraccionado,derechoPoliza,IVA,importeTotal;
-            //String PrimaNeta, REcargoPagoFraccionado, DerechoPoliza, iVA, ImporteTotal;
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != (char)46; //permite digitar solo numeros y(char)8 es retroceso(borrar)
 
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                try
-                {
-                        IMPORTETOTAL = IMPORTETOTAL + float.Parse(txtIVA.Text);
-                        txtImporte.Text = IMPORTETOTAL.ToString();
-                        IMPORTETOTAL = 0;
-                        cmbAgente.Focus();
-                }
-                catch
-                {
-                    MessageBox.Show("Porfavor ingrese un numero valido");
-                    txtIVA.Focus();
-                }
-               
-            }
-            
-           
         }
 
         private void txtNumeroPoliza_KeyPress(object sender, KeyPressEventArgs e)
@@ -966,59 +990,20 @@ namespace ControlPolizas
 
         private void txtPrima_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                try
-                {
-                    IMPORTETOTAL = IMPORTETOTAL + float.Parse(txtPrima.Text);
-                    txtImporte.Text = IMPORTETOTAL.ToString();
-                    txtFraccionado.Focus();
-                }
-                catch
-                {
-                    MessageBox.Show("Porfavor ingrese un numero valido");
-                    txtPrima.Focus();
-                }
-                
-            }
+
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != (char)46; //permite digitar solo numeros y(char)8 es retroceso(borrar)
         }
 
         private void txtFraccionado_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                try
-                {
-                        IMPORTETOTAL = IMPORTETOTAL + float.Parse(txtFraccionado.Text);
-                        txtImporte.Text = IMPORTETOTAL.ToString();
-                        txtDerechoPoliza.Focus();
-                }
-                catch
-                {
-                    MessageBox.Show("Porfavor ingrese un numero valido");
-                    txtFraccionado.Focus();
-                }
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != (char)46; //permite digitar solo numeros y(char)8 es retroceso(borrar)
 
-                
-            }
         }
 
         private void txtDerechoPoliza_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                try
-                {
-                    IMPORTETOTAL = IMPORTETOTAL + float.Parse(txtDerechoPoliza.Text);
-                    txtImporte.Text = IMPORTETOTAL.ToString();
-                    txtIVA.Focus();
-                }catch(Exception ev)
-                {
-                    MessageBox.Show("Porfavor ingrese un numero valido");
-                    txtDerechoPoliza.Focus();
-                }
-                
-            }
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != (char)46; //permite digitar solo numeros y(char)8 es retroceso(borrar)
+
         }
 
         private void cmbAgente_KeyPress(object sender, KeyPressEventArgs e)
@@ -1042,14 +1027,77 @@ namespace ControlPolizas
             }
         }
 
-        private void txtPrima_TextChanged(object sender, EventArgs e)
+        public void sumarImporte()
         {
 
+            try
+            {
+                /*double prima, fraccionado, derechoPoliza, iva;
+
+                prima = double.Parse(txtPrima.Text);
+                fraccionado = double.Parse(txtFraccionado.Text);
+                derechoPoliza = double.Parse(txtDerechoPoliza.Text);
+                iva = double.Parse(txtIVA.Text);*/
+
+                //float prima, fraccionado, derechoPoliza, iva;
+
+               
+
+
+                IMPORTETOTAL = prima + fraccionado + derechoPoliza + iva;
+                txtImporte.Text = IMPORTETOTAL.ToString();
+            }catch(Exception ev)
+            {
+                MessageBox.Show(ev.ToString());
+            }
+           }
+
+
+        private void txtPrima_TextChanged(object sender, EventArgs e)
+        {
+            
+            if (txtPrima.Equals(""))
+            {
+
+            }
+            else
+            {
+                try
+                {
+                    prima = float.Parse(txtPrima.Text);
+                    sumarImporte();
+                }
+                catch
+                {
+
+                }
+                 
+               
+            }
+            
         }
 
         private void txtFraccionado_TextChanged(object sender, EventArgs e)
         {
 
+            if (txtFraccionado.Equals(""))
+            {
+
+            }
+            else
+            {
+                try
+                {
+                    fraccionado = float.Parse(txtFraccionado.Text);
+
+                    sumarImporte();
+                }
+                catch
+                {
+
+                }
+            }
+            
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -1318,6 +1366,18 @@ namespace ControlPolizas
            
         }
 
+        private void txtImporte_TextChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                txtImporte.Text = string.Format("{0:0.00}", double.Parse(txtImporte.Text));
+
+            }catch
+            {
+
+            }
+         }
+
         private void btnRevisarRecibos_Click(object sender, EventArgs e)
         {
             recibos = new Recibos();
@@ -1338,6 +1398,11 @@ namespace ControlPolizas
             {
                 chkboxPagarPrimer.Enabled = true;
             }
+        }
+
+        private void txtPrima_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtPrima.SelectAll();
         }
     }
 }

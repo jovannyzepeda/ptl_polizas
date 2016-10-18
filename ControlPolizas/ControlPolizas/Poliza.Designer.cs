@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.chkboxNueva = new System.Windows.Forms.CheckBox();
             this.txtNumeroPoliza = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -74,6 +75,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.chkboxPagarPrimer = new System.Windows.Forms.CheckBox();
             this.btnRevisarRecibos = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -347,7 +349,7 @@
             // 
             this.txtIVA.Location = new System.Drawing.Point(163, 101);
             this.txtIVA.Name = "txtIVA";
-            this.txtIVA.Size = new System.Drawing.Size(45, 20);
+            this.txtIVA.Size = new System.Drawing.Size(70, 20);
             this.txtIVA.TabIndex = 3;
             this.txtIVA.TextChanged += new System.EventHandler(this.txtIVA_TextChanged);
             this.txtIVA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIVA_KeyPress);
@@ -378,6 +380,7 @@
             this.txtImporte.Name = "txtImporte";
             this.txtImporte.Size = new System.Drawing.Size(127, 20);
             this.txtImporte.TabIndex = 4;
+            this.txtImporte.TextChanged += new System.EventHandler(this.txtImporte_TextChanged_1);
             // 
             // label7
             // 
@@ -433,7 +436,7 @@
             this.txtDerechoPoliza.Name = "txtDerechoPoliza";
             this.txtDerechoPoliza.Size = new System.Drawing.Size(127, 20);
             this.txtDerechoPoliza.TabIndex = 2;
-            this.txtDerechoPoliza.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtDerechoPoliza.TextChanged += new System.EventHandler(this.txtDerechoPolizaChanged);
             this.txtDerechoPoliza.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDerechoPoliza_KeyPress);
             // 
             // label6
@@ -451,6 +454,7 @@
             this.txtPrima.Name = "txtPrima";
             this.txtPrima.Size = new System.Drawing.Size(127, 20);
             this.txtPrima.TabIndex = 0;
+            this.txtPrima.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtPrima_MouseClick);
             this.txtPrima.TextChanged += new System.EventHandler(this.txtPrima_TextChanged);
             this.txtPrima.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrima_KeyPress);
             // 
@@ -541,6 +545,11 @@
             this.btnRevisarRecibos.Text = "Revisar &Recibos";
             this.btnRevisarRecibos.UseVisualStyleBackColor = true;
             this.btnRevisarRecibos.Click += new System.EventHandler(this.btnRevisarRecibos_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // Poliza
             // 
@@ -641,5 +650,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.CheckBox chkboxPagarPrimer;
         private System.Windows.Forms.Button btnRevisarRecibos;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

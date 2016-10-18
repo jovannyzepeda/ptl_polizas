@@ -26,3 +26,4 @@ C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\Con
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.exe
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.pdb
 C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.ConsultaClientesExistentes.resources
+C:\Users\Nacho Martinez\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.ConsultarPolizaPorNumero.resources

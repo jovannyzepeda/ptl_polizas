@@ -68,8 +68,8 @@ namespace ControlPolizas
 
         public void recibosPorVencer()
         {
-            String fecha1 = thisDay.AddDays(3).ToString("yyyy-MM-dd");
-            String fecha2 = thisDay.AddDays(7).ToString("yyyy-MM-dd");
+            String fecha1 = thisDay.AddDays(-2).ToString("yyyy-MM-dd");
+            String fecha2 = thisDay.AddDays(3).ToString("yyyy-MM-dd");
             //MessageBox.Show("path "+System.IO.Directory.GetCurrentDirectory()+"\\ControlPolizas.db");
 
             String query = "SELECT p.NumeroPoliza,c.Nombre,rp.InicioVigencia,rp.FinVigencia,rp.Monto FROM Clientes c, Polizas p, RecibosPoliza rp, TipoPolizas tp, Companias co WHERE p.FK_Cliente=c.PK_Cliente and p.FK_Compania=co.PK_Compania and p.FK_TipoPoliza=tp.PK_TipoPoliza AND rp.FK_Poliza=p.PK_Poliza  AND rp.FinVigencia BETWEEN '"+fecha1+"' AND '"+fecha2+"'";
@@ -288,6 +288,11 @@ namespace ControlPolizas
         {
             ConsultaClientesExistentes clientesExistentes = new ConsultaClientesExistentes();
             clientesExistentes.Show();
+        }
+
+        private void consultarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

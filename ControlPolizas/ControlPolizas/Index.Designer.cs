@@ -41,6 +41,7 @@
             this.primasNuevasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vigenciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
@@ -55,7 +56,8 @@
             this.dgvPendientes = new System.Windows.Forms.DataGridView();
             this.dgvCumpleaños = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.porNúmeroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.porAgenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecibosPorVencer)).BeginInit();
@@ -128,13 +130,16 @@
             this.consultarToolStripMenuItem.Name = "consultarToolStripMenuItem";
             this.consultarToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.consultarToolStripMenuItem.Text = "Consultar";
+            this.consultarToolStripMenuItem.Click += new System.EventHandler(this.consultarToolStripMenuItem_Click);
             // 
             // polizaToolStripMenuItem1
             // 
             this.polizaToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.primasNuevasToolStripMenuItem,
             this.clientesToolStripMenuItem,
-            this.vigenciasToolStripMenuItem});
+            this.vigenciasToolStripMenuItem,
+            this.porNúmeroToolStripMenuItem,
+            this.porAgenteToolStripMenuItem});
             this.polizaToolStripMenuItem1.Name = "polizaToolStripMenuItem1";
             this.polizaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.polizaToolStripMenuItem1.Text = "Polizas";
@@ -143,23 +148,30 @@
             // primasNuevasToolStripMenuItem
             // 
             this.primasNuevasToolStripMenuItem.Name = "primasNuevasToolStripMenuItem";
-            this.primasNuevasToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.primasNuevasToolStripMenuItem.Text = "Primas acumuladas";
+            this.primasNuevasToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.primasNuevasToolStripMenuItem.Text = "Por &Primas acumuladas";
             this.primasNuevasToolStripMenuItem.Click += new System.EventHandler(this.primasNuevasToolStripMenuItem_Click);
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.clientesToolStripMenuItem.Text = "Clientes";
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.clientesToolStripMenuItem.Text = "Por &Cliente";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // vigenciasToolStripMenuItem
             // 
             this.vigenciasToolStripMenuItem.Name = "vigenciasToolStripMenuItem";
-            this.vigenciasToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.vigenciasToolStripMenuItem.Text = "Vigencias";
+            this.vigenciasToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.vigenciasToolStripMenuItem.Text = "Por &Vigencias";
             this.vigenciasToolStripMenuItem.Click += new System.EventHandler(this.vigenciasToolStripMenuItem_Click);
+            // 
+            // clientesToolStripMenuItem1
+            // 
+            this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
+            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.clientesToolStripMenuItem1.Text = "Clientes";
+            this.clientesToolStripMenuItem1.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
             // 
             // acercaDeToolStripMenuItem
             // 
@@ -279,6 +291,7 @@
             // 
             // dgvRecibosPorVencer
             // 
+            this.dgvRecibosPorVencer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvRecibosPorVencer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRecibosPorVencer.Location = new System.Drawing.Point(6, 204);
             this.dgvRecibosPorVencer.Name = "dgvRecibosPorVencer";
@@ -287,6 +300,7 @@
             // 
             // dgvPendientes
             // 
+            this.dgvPendientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvPendientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPendientes.Location = new System.Drawing.Point(6, 44);
             this.dgvPendientes.Name = "dgvPendientes";
@@ -296,6 +310,7 @@
             // 
             // dgvCumpleaños
             // 
+            this.dgvCumpleaños.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvCumpleaños.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCumpleaños.Location = new System.Drawing.Point(699, 71);
             this.dgvCumpleaños.Name = "dgvCumpleaños";
@@ -313,12 +328,17 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Cumpleaños de:";
             // 
-            // clientesToolStripMenuItem1
+            // porNúmeroToolStripMenuItem
             // 
-            this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
-            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.clientesToolStripMenuItem1.Text = "Clientes";
-            this.clientesToolStripMenuItem1.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
+            this.porNúmeroToolStripMenuItem.Name = "porNúmeroToolStripMenuItem";
+            this.porNúmeroToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.porNúmeroToolStripMenuItem.Text = "Por &Número";
+            // 
+            // porAgenteToolStripMenuItem
+            // 
+            this.porAgenteToolStripMenuItem.Name = "porAgenteToolStripMenuItem";
+            this.porAgenteToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.porAgenteToolStripMenuItem.Text = "Por &Agente";
             // 
             // FrmIndex
             // 
@@ -380,6 +400,8 @@
         public System.Windows.Forms.DataGridView dgvCumpleaños;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem porNúmeroToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem porAgenteToolStripMenuItem;
     }
 }
 

@@ -198,7 +198,7 @@ namespace ControlPolizas
 
         private void txtPrimaCumulada_TextChanged(object sender, EventArgs e)
         {
-
+            txtPrimaCumulada.Text = string.Format("{0:0.00}", double.Parse(txtPrimaCumulada.Text));
         }
 
         private void dgvRecibos_CellContentClick(object sender, DataGridViewCellEventArgs e)

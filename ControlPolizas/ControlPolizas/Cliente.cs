@@ -16,6 +16,8 @@ namespace ControlPolizas
         //Direccion direccion;
         SQLiteConnection conexion;
         int PK_Cliente = 0;
+        FrmIndex index;
+
         public void valoreDefaultBotones()
         {
             btnEliminar.Enabled = false;
@@ -70,7 +72,7 @@ namespace ControlPolizas
         {
             SQLiteCommand command;
             SQLiteDataReader lectorDatos;
-
+            txtNombreCliente.AutoCompleteCustomSource.Clear();
             try
             {
 
@@ -161,10 +163,12 @@ namespace ControlPolizas
 
                 insertarCliente(pk_cliente, nombreCliente, RFC, fechaNacimiento, telefono, correoElectronico);
                 insertarDireccionCliente(pk_cliente, calle, numero, colonia, estado, municipio, codigoPostal);
+                
                 //limpiarComboBox();
                 limpiarTextBox();
                 valoreDefaultBotones();
                 sugerenciaClientes();
+                //index.cumpleañosDeHoy();
             }
             catch(Exception even)
             {
@@ -227,6 +231,7 @@ namespace ControlPolizas
             if (dialogResult == DialogResult.Yes)
             {
                 eliminarCliente(PK_Cliente);
+                sugerenciaClientes();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -537,6 +542,7 @@ namespace ControlPolizas
 
         private void txtMuniciopioDireccion_TextChanged(object sender, EventArgs e)
         {
+            txtMuniciopioDireccion.CharacterCasing = CharacterCasing.Upper;
 
         }
 
@@ -574,5 +580,59 @@ namespace ControlPolizas
                 MessageBox.Show("Error Al Actualizar Cliente, verifique la informacion");
             }
             }
+
+        private void txtCodigoPotalDireccion_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void txtRFC_TextChanged(object sender, EventArgs e)
+        {
+            txtRFC.CharacterCasing= CharacterCasing.Upper;
+            //txtRFC.Text= String.Format("{0:0000-000000-000}", txtRFC.Text);
+        }
+
+        private void txtNombreCliente_TextChanged(object sender, EventArgs e)
+        {
+            txtNombreCliente.CharacterCasing = CharacterCasing.Upper;
+        }
+
+        private void txtCodigoPotalDireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar)&&e.KeyChar!=(char)8; //permite digitar solo numeros y(char)8 es retroceso(borrar)
+        }
+
+        private void txtTelefono_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtCalleDireccion_TextChanged(object sender, EventArgs e)
+        {
+            txtCalleDireccion.CharacterCasing = CharacterCasing.Upper;
+
+        }
+
+        private void txtColoniaDireccion_TextChanged(object sender, EventArgs e)
+        {
+            txtColoniaDireccion.CharacterCasing = CharacterCasing.Upper;
+
+        }
+
+        private void txtNumeroCalle_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEstadoDireccion_TextChanged(object sender, EventArgs e)
+        {
+            txtEstadoDireccion.CharacterCasing = CharacterCasing.Upper;
+
+        }
     }
 }
